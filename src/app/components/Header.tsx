@@ -9,6 +9,23 @@ const HeaderStyle = styled.header`
   padding: 1rem;
   display: flex;
 
+  .overlay {
+    position: fixed;
+    width: 100%;
+    height: calc(100vh - 40px - 2rem);
+    top: calc(40px + 2rem);
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+
+    &.visible {
+      opacity: 0.5;
+      visibility: visible;
+      background-color: #000;
+    }
+  }
+
   .header {
     display: flex;
     justify-content: flex-end;
@@ -16,6 +33,7 @@ const HeaderStyle = styled.header`
     width: 100%;
     height: 40px;
     font-size: 1.3em;
+    z-index: 2;
 
     .header-home {
       margin-right: auto;
@@ -108,6 +126,7 @@ export default function Header() {
 
   return (
     <HeaderStyle>
+      <div className={ `overlay ${isMenuVisible ? 'visible' : ''}` } onClick={handleMenuClose}></div>
       <div className="header">
         <div className="header-home">
           <Link href="/">Home</Link>
