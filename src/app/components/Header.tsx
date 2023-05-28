@@ -82,6 +82,7 @@ const HeaderStyle = styled.header`
       right: 0;
       top: calc(40px + 2rem);
       transform: translateX(100%);
+      --webkit-transform: translateX(100%);
       transition: all 0.3s ease-in-out;
       color: black;
       font-weight: bold;
@@ -139,7 +140,7 @@ export default function Header() {
 
   return (
     <HeaderStyle>
-      <div className={ `overlay ${isMenuVisible ? 'visible' : ''}` } onClick={handleMenuClose}></div>
+      {/* <div className={ `overlay ${isMenuVisible ? 'visible' : ''}` } onClick={handleMenuClose}></div> */}
       <div className="header">
         <div className="header-home">
           <Link href="/">Home</Link>
