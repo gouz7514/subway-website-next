@@ -2,6 +2,7 @@
 
 import './globals.css'
 import StyledComponentsRegistry from '@/lib/registry'
+import GlobalHeader from '@/lib/globalHeader'
 
 import Header from './components/Header'
 
@@ -19,8 +20,10 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
-        <StyledComponentsRegistry>
+        <GlobalHeader>
           <Header />
+        </GlobalHeader>
+        <StyledComponentsRegistry>
           { children }
         </StyledComponentsRegistry>
       </body>
