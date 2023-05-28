@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const HeaderStyle = styled.header`
-  background-color: #333;
+  background-color: var(--primary-green);
   color: #fff;
   padding: 1rem;
   display: flex;
@@ -18,11 +18,13 @@ const HeaderStyle = styled.header`
     opacity: 0;
     visibility: hidden;
     z-index: 1;
+    transition: opacity 0.3s ease-in-out;
 
     &.visible {
       opacity: 0.5;
       visibility: visible;
       background-color: #000;
+      transition: opacity 0.3s ease-in-out;
     }
   }
 
@@ -42,6 +44,15 @@ const HeaderStyle = styled.header`
     .header-menu {
       .header-toggle {
         display: none;
+        cursor: pointer;
+        background-image: url('/icon/icon_menu.svg');
+        width: 30px;
+        height: 30px;
+        background-size: 30px 30px;
+
+        &.close {
+          background-image: url('/icon/icon_close.svg');
+        }
 
         @media screen and (max-width: 600px) {
           display: block;
@@ -67,11 +78,13 @@ const HeaderStyle = styled.header`
       display: flex;
       flex-direction: column;
       height: calc(100vh - 40px - 2rem);
-      background-color: #333;
+      background-color: var(--primary-yellow);
       right: 0;
       top: calc(40px + 2rem);
       transform: translateX(100%);
       transition: all 0.3s ease-in-out;
+      color: black;
+      font-weight: bold;
 
       .header-link {
         padding: 1rem;
@@ -79,7 +92,7 @@ const HeaderStyle = styled.header`
         text-align: center;
 
         &:hover {
-          background-color: #444;
+          backdrop-filter: brightness(1.1);
         }
       }
 
@@ -132,9 +145,7 @@ export default function Header() {
           <Link href="/">Home</Link>
         </div>
         <div className="header-menu">
-          <div className="header-toggle" onClick={handleMenuClick}>
-            메뉴
-          </div>
+          <div className={ `header-toggle ${isMenuVisible ? 'close' : 'open' }` } onClick={handleMenuClick} />
           <div className="header-links">
             <div className="header-link">
               <Link href="/usage">Usage</Link>
