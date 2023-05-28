@@ -73,9 +73,10 @@ const HeaderStyle = styled.header`
       font-weight: bold;
 
       .header-link {
-        padding: 1rem;
+        padding: 2rem;
         cursor: pointer;
         text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 
         &:hover {
           backdrop-filter: brightness(1.1);
@@ -151,26 +152,26 @@ export default function Header() {
             <div className={ `header-toggle ${isMenuVisible ? 'close' : 'open' }` } onClick={handleMenuClick} />
             <div className="header-links">
               <div className="header-link">
-                <Link href="/usage">Usage</Link>
+                <Link href="/usage">사용 방법</Link>
               </div>
               <div className="header-link">
-                <Link href="/ingredients">Ingredients</Link>
+                <Link href="/ingredients">재료 소개</Link>
               </div>
               <div className="header-link">
-                <Link href="/combination">Combination</Link>
+                <Link href="/combination">🍯 조합</Link>
               </div>
             </div>
           </div>
           { isMobile && 
             <div className={ `header-links-mobile ${isMenuVisible ? 'open' : 'hide'}` }>
               <div className="header-link">
-                <Link href="/usage">Usage</Link>
+                <Link href="/usage">사용 방법</Link>
               </div>
               <div className="header-link">
-                <Link href="/ingredients">Ingredients</Link>
+                <Link href="/ingredients">재료 소개</Link>
               </div>
               <div className="header-link">
-                <Link href="/combination">Combination</Link>
+                <Link href="/combination">🍯 조합</Link>
               </div>
             </div>
           }

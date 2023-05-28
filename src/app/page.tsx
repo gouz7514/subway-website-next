@@ -1,7 +1,9 @@
 export default function Home() {
   return (
     <main>
-      This is your first page
+      <div className="container">
+        This is your first page
+      </div>
     </main>
   )
 }
