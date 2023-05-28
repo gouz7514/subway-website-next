@@ -41,10 +41,6 @@ const HeaderStyle = styled.header`
         height: 30px;
         background-size: 30px 30px;
 
-        &.close {
-          background-image: url('/icon/icon_close.svg');
-        }
-
         @media screen and (max-width: 600px) {
           display: block;
         }
@@ -72,10 +68,10 @@ const HeaderStyle = styled.header`
       position: absolute;
       display: flex;
       flex-direction: column;
-      height: 500px;
+      height: 100vh;
       background-color: var(--primary-yellow);
       right: 0;
-      top: var(--height-header);
+      top: 0;
       transform: translateX(100%);
       --webkit-transform: translateX(100%);
       transition: all 0.3s ease-in-out;
@@ -83,19 +79,36 @@ const HeaderStyle = styled.header`
       font-weight: bold;
       z-index: 10;
 
-      .header-link {
-        padding: 2rem;
+      .header-close {
+        background-image: url('/icon/icon_menu.svg');
+        width: 30px;
+        height: 30px;
+        background-size: 30px 30px;
+        background-image: url('/icon/icon_close.svg');
         cursor: pointer;
-        text-align: center;
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+        position: absolute;
+        right: 1em;
+        top: 1em;
+      }
 
-        &:hover {
-          backdrop-filter: brightness(1.1);
+      .header-links {
+        padding-top: var(--height-header);
+        
+        .header-link {
+          padding: 2rem;
+          cursor: pointer;
+          text-align: center;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  
+          &:hover {
+            backdrop-filter: brightness(1.1);
+          }
         }
       }
 
       &.open {
         transform: translateX(0);
+        position: fixed;
       }
     }
   }
@@ -110,7 +123,6 @@ const Overlay = styled.div`
   opacity: 0;
   visibility: hidden;
   z-index: 2;
-  transition: opacity 0.3s ease-in-out;
 
   &.visible {
     opacity: 0.5;
@@ -175,14 +187,17 @@ export default function Header() {
           </div>
           { isMobile && 
             <div className={ `header-links-mobile ${isMenuVisible ? 'open' : 'hide'}` }>
-              <div className="header-link">
-                <Link href="/usage">사용 방법</Link>
-              </div>
-              <div className="header-link">
-                <Link href="/ingredients">재료 소개</Link>
-              </div>
-              <div className="header-link">
-                <Link href="/combination">조합</Link>
+              <div className="header-close" onClick={handleMenuClose}/>
+              <div className="header-links">
+                <div className="header-link">
+                  <Link href="/usage">사용 방법</Link>
+                </div>
+                <div className="header-link">
+                  <Link href="/ingredients">재료 소개</Link>
+                </div>
+                <div className="header-link">
+                  <Link href="/combination">조합</Link>
+                </div>
               </div>
             </div>
           }
