@@ -9,25 +9,6 @@ const HeaderStyle = styled.header`
   padding: 1rem;
   display: flex;
 
-  .overlay {
-    position: fixed;
-    width: 100%;
-    height: calc(100vh - 40px - 2rem);
-    top: calc(40px + 2rem);
-    left: 0;
-    opacity: 0;
-    visibility: hidden;
-    z-index: 1;
-    transition: opacity 0.3s ease-in-out;
-
-    &.visible {
-      opacity: 0.5;
-      visibility: visible;
-      background-color: #000;
-      transition: opacity 0.3s ease-in-out;
-    }
-  }
-
   .header {
     display: flex;
     justify-content: flex-end;
@@ -35,10 +16,14 @@ const HeaderStyle = styled.header`
     width: 100%;
     height: 40px;
     font-size: 1.3em;
-    z-index: 2;
 
     .header-home {
       margin-right: auto;
+      background-image: url('/icon/logo_subhow.svg');
+      width: 120px;
+      height: 30px;
+      background-repeat: no-repeat;
+      background-size: 120px 30px;
     }
 
     .header-menu {
@@ -104,6 +89,25 @@ const HeaderStyle = styled.header`
   }
 `
 
+const Overlay = styled.div`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  z-index: -1;
+  transition: opacity 0.3s ease-in-out;
+
+  &.visible {
+    opacity: 0.5;
+    visibility: visible;
+    background-color: #000;
+    transition: opacity 0.3s ease-in-out;
+  }
+`
+
 export default function Header() {
   const [isMobile, setIsMobile] = useState(false)
   const [isMenuVisible, setIsMenuVisible] = useState(false)
@@ -139,40 +143,40 @@ export default function Header() {
   })
 
   return (
-    <HeaderStyle>
-      {/* <div className={ `overlay ${isMenuVisible ? 'visible' : ''}` } onClick={handleMenuClose}></div> */}
-      <div className="header">
-        <div className="header-home">
-          <Link href="/">Home</Link>
-        </div>
-        <div className="header-menu">
-          <div className={ `header-toggle ${isMenuVisible ? 'close' : 'open' }` } onClick={handleMenuClick} />
-          <div className="header-links">
-            <div className="header-link">
-              <Link href="/usage">Usage</Link>
-            </div>
-            <div className="header-link">
-              <Link href="/ingredients">Ingredients</Link>
-            </div>
-            <div className="header-link">
-              <Link href="/combination">Combination</Link>
-            </div>
-          </div>
-        </div>
-        { isMobile && 
-          <div className={ `header-links-mobile ${isMenuVisible ? 'open' : 'hide'}` }>
-            <div className="header-link">
-              <Link href="/usage">Usage</Link>
-            </div>
-            <div className="header-link">
-              <Link href="/ingredients">Ingredients</Link>
-            </div>
-            <div className="header-link">
-              <Link href="/combination">Combination</Link>
+    <>
+      <HeaderStyle>
+        <div className="header">
+          <Link href={"/"} className="header-home" />
+          <div className="header-menu">
+            <div className={ `header-toggle ${isMenuVisible ? 'close' : 'open' }` } onClick={handleMenuClick} />
+            <div className="header-links">
+              <div className="header-link">
+                <Link href="/usage">Usage</Link>
+              </div>
+              <div className="header-link">
+                <Link href="/ingredients">Ingredients</Link>
+              </div>
+              <div className="header-link">
+                <Link href="/combination">Combination</Link>
+              </div>
             </div>
           </div>
-        }
-      </div>
-    </HeaderStyle>
+          { isMobile && 
+            <div className={ `header-links-mobile ${isMenuVisible ? 'open' : 'hide'}` }>
+              <div className="header-link">
+                <Link href="/usage">Usage</Link>
+              </div>
+              <div className="header-link">
+                <Link href="/ingredients">Ingredients</Link>
+              </div>
+              <div className="header-link">
+                <Link href="/combination">Combination</Link>
+              </div>
+            </div>
+          }
+        </div>
+      </HeaderStyle>
+      <Overlay className={ `${isMenuVisible ? 'visible' : ''}` } onClick={handleMenuClose}></Overlay>
+    </>
   )
 }
