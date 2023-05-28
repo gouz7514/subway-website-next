@@ -8,6 +8,9 @@ const HeaderStyle = styled.header`
   color: #fff;
   padding: 1rem;
   display: flex;
+  height: var(--height-header);
+  position: relative;
+  z-index: 10;
 
   .header {
     display: flex;
@@ -26,6 +29,7 @@ const HeaderStyle = styled.header`
       height: 30px;
       background-repeat: no-repeat;
       background-size: 120px 30px;
+      z-index: 10;
     }
 
     .header-menu {
@@ -68,15 +72,16 @@ const HeaderStyle = styled.header`
       position: absolute;
       display: flex;
       flex-direction: column;
-      height: calc(100vh - 40px - 2rem);
+      height: 500px;
       background-color: var(--primary-yellow);
       right: 0;
-      top: calc(40px + 2rem);
+      top: var(--height-header);
       transform: translateX(100%);
       --webkit-transform: translateX(100%);
       transition: all 0.3s ease-in-out;
       color: black;
       font-weight: bold;
+      z-index: 10;
 
       .header-link {
         padding: 2rem;
@@ -104,7 +109,7 @@ const Overlay = styled.div`
   left: 0;
   opacity: 0;
   visibility: hidden;
-  z-index: -1;
+  z-index: 2;
   transition: opacity 0.3s ease-in-out;
 
   &.visible {

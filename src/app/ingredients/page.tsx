@@ -6,53 +6,74 @@ import styled from 'styled-components'
 
 
 const IngredientsList = styled.div`
+  display: flex;
+  height: calc(100vh - 100px);
+
   .ingredient-grid {
     display: grid;
-    height: calc(100vh - 100px);
-    grid-template-columns: repeat(2, minmax(300px, 600px));
+    grid-template-columns: repeat(2, 450px);
+    grid-template-rows: repeat(2, 450px);
     gap: 24px;
     padding: 24px;
     max-width: 1024px;
     margin: auto;
     justify-content: center;
 
+    @media screen and (max-width: 1024px) {
+      grid-template-columns: repeat(2, 300px);
+      grid-template-rows: repeat(2, 300px);
+    }
+
     @media screen and (max-width: 680px) {
-      grid-template-columns: repeat(1, 300px);
-      grid-template-rows: repeat(4, 250px);
+      grid-template-columns: repeat(1, 320px);
+      grid-template-rows: repeat(4, 320px);
     }
   }
 
   .ingredient-list {
     border: 1px solid black;
+    height: 100%;
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `
 
 export default function PageIngredients() {
   return (
     <>
-      <div>Ingredients</div>
       <IngredientsList>
         <div className="ingredient-grid">
-          <div className="ingredient-list">
-            <Link href="/ingredients/bread">
-              빵
-            </Link>
-          </div>
-          <div className="ingredient-list">
-            <Link href="/ingredients/cheese">
+          <Link href="/ingredients/bread" className="ingredient-list">
+            <div className="ingredient-item">
+              <h2 className="ingredient-item-title">
+                빵
+              </h2>
+            </div>
+          </Link>
+          <Link href="/ingredients/cheese" className="ingredient-list">
+            <div className="ingredient-item">
+              <h2 className="ingredient-item-title">
               치즈
-            </Link>
-          </div>
-          <div className="ingredient-list">
-            <Link href="/ingredients/sauce">
-              소스
-            </Link>
-          </div>
-          <div className="ingredient-list">
-            <Link href="/ingredients/vegetable">
-              야채
-            </Link>
-          </div>
+              </h2>
+            </div>
+          </Link>
+          <Link href="/ingredients/sauce" className="ingredient-list">
+            <div className="ingredient-item">
+              <h2 className="ingredient-item-title">
+                소스
+              </h2>
+            </div>
+          </Link>
+          <Link href="/ingredients/vegetable" className="ingredient-list">
+            <div className="ingredient-item">
+              <h2 className="ingredient-item-title">
+                채소
+              </h2>
+            </div>
+          </Link>
         </div>
       </IngredientsList>
     </>
