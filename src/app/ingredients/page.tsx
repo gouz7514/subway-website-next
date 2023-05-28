@@ -28,16 +28,44 @@ const IngredientsList = styled.div`
       grid-template-columns: repeat(1, 320px);
       grid-template-rows: repeat(4, 320px);
     }
+
+    .ingredient-image {
+      width: 200px;
+      height: 200px;
+      background-size: 200px 200px;
+      background-repeat: no-repeat;
+
+      &.bread {
+        background-image: url('/image/image-bread.svg');
+      }
+
+      &.cheese {
+        background-image: url('/image/image-cheese.svg');
+      }
+
+      &.sauce {
+        background-image: url('/image/image-sauce.svg');
+      }
+
+      &.vegetable {
+        background-image: url('/image/image-vegetable.svg');
+      }
+    }
   }
 
   .ingredient-list {
-    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     height: 100%;
     border-radius: 12px;
     padding: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    &:hover {
+      transform: translateY(-6px) scale(1.05);
+      transition: all 0.3s ease-in-out;
+    }
   }
 `
 
@@ -48,30 +76,22 @@ export default function PageIngredients() {
         <div className="ingredient-grid">
           <Link href="/ingredients/bread" className="ingredient-list">
             <div className="ingredient-item">
-              <h2 className="ingredient-item-title">
-                빵
-              </h2>
+              <div className="ingredient-image bread"></div>
             </div>
           </Link>
           <Link href="/ingredients/cheese" className="ingredient-list">
             <div className="ingredient-item">
-              <h2 className="ingredient-item-title">
-              치즈
-              </h2>
+              <div className="ingredient-image cheese"></div>
             </div>
           </Link>
           <Link href="/ingredients/sauce" className="ingredient-list">
             <div className="ingredient-item">
-              <h2 className="ingredient-item-title">
-                소스
-              </h2>
+              <div className="ingredient-image sauce"></div>
             </div>
           </Link>
           <Link href="/ingredients/vegetable" className="ingredient-list">
             <div className="ingredient-item">
-              <h2 className="ingredient-item-title">
-                채소
-              </h2>
+              <div className="ingredient-image vegetable"></div>
             </div>
           </Link>
         </div>
