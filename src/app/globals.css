@@ -29,7 +29,32 @@ a {
 }
 
 .container {
+  max-width: 600px;
   padding: 0 12px;
+  margin: auto;
+}
+
+.swiper-wrapper {
+  height: calc(100vh - 100px) !important;
+}
+
+.swiper-slide {
+  height: 100%;
+  display:flex;
+  align-items: center;
+  /* width: calc(100% - 24px) !important; */
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-flex.align-items-center {
+  align-items: center;
+}
+
+.d-flex.justify-content-center {
+  justify-content: center;
 }
 
 /* @media (prefers-color-scheme: dark) {
