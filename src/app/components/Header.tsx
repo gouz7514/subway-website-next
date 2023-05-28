@@ -16,6 +16,8 @@ const HeaderStyle = styled.header`
     width: 100%;
     height: 40px;
     font-size: 1.3em;
+    color: black;
+    font-weight: bold;
 
     .header-home {
       margin-right: auto;
@@ -50,6 +52,10 @@ const HeaderStyle = styled.header`
 
         .header-link {
           cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
         }
 
         @media screen and (max-width: 600px) {
@@ -158,7 +164,7 @@ export default function Header() {
                 <Link href="/ingredients">재료 소개</Link>
               </div>
               <div className="header-link">
-                <Link href="/combination">🍯 조합</Link>
+                <Link href="/combination">조합</Link>
               </div>
             </div>
           </div>
@@ -171,7 +177,7 @@ export default function Header() {
                 <Link href="/ingredients">재료 소개</Link>
               </div>
               <div className="header-link">
-                <Link href="/combination">🍯 조합</Link>
+                <Link href="/combination">조합</Link>
               </div>
             </div>
           }
