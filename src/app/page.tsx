@@ -1,95 +1,138 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client'
+
+import styled from "styled-components"
+import Link from 'next/link'
+
+const Intro = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: calc(100vh - var(--height-header));
+
+  .intro-text {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 24px 0;
+
+    @media screen and (max-width: 1024px) {
+      font-size: 1.2em;
+    }
+  }
+
+  .intro-list {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+
+    .intro-link {
+      border-radius: 12px;
+
+      &:first-child {
+        background: radial-gradient(ellipse farthest-corner at 90% 90%, #ff723a, #ff506e);
+      }
+
+      &:nth-child(2) {
+        background: radial-gradient(ellipse farthest-corner at 90% 90%, #00e244, #00b48e);
+      }
+
+      &:last-child {
+        background: radial-gradient(ellipse farthest-corner at 90% 90%, #882ef0, rgba(80, 115, 255, 0.8));
+      }
+
+      &:hover {
+        transform: translateY(-6px);
+        transition: transform 0.3s ease-in-out;
+      }
+    }
+
+    .intro-item {
+      width: 300px;
+      height: 300px;
+      border-radius: 12px;
+      padding: 18px;
+      color: white;
+      cursor: pointer;
+
+      .intro-item-title {
+        margin-bottom: 12px;
+      }
+
+      @media screen and (max-width: 450px) {
+        width: 260px;
+        height: 260px;
+      }
+    }
+
+    @media screen and (max-width: 1024px) {
+      flex-direction: column;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    min-height: calc(100vh - 72px);
+  }
+`
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      <Intro>
+        <div className="intro-text">
+          SUBHOW와 함께 써브웨이를 즐기세요!
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+        <div className="intro-list">
+          <Link href="/usage" className="intro-link">
+            <div className="intro-item">
+              <div className="intro-item-title">
+                <h3>
+                  사용 방법
+                </h3>
+              </div>
+              <div className="intro-item-description">
+                <span>
+                  알고 보면 쉬워요!<br />
+                  써브웨이 주문 방법 알려드려요
+                </span>
+              </div>
+            </div>
+          </Link>
+          <Link href="/ingredients" className="intro-link">
+            <div className="intro-item">
+              <div className="intro-item-title">
+                <h3>
+                  재료 소개
+                </h3>
+              </div>
+              <div className="intro-item-description">
+                <span>
+                  건강과 맛을 동시에!<br />
+                  빵부터 쿠키까지 소개해드려요
+                </span>
+              </div>
+            </div>
+          </Link>
+          <Link href="/combination" className="intro-link">
+            <div className="intro-item">
+              <div className="intro-item-title">
+                <h3>
+                  조합 추천
+                </h3>
+              </div>
+              <div className="intro-item-description">
+                <span>
+                  매일 같은 메뉴는 그만!<br />
+                  숨겨진 꿀조합을 추천해드려요
+                </span>
+              </div>
+            </div>
+        
+          </Link>
+        </div>
+      </Intro>
     </main>
   )
 }
