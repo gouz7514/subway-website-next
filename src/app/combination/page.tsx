@@ -13,6 +13,12 @@ const CombinationWrapper = styled.div`
 
   .title {
     margin-bottom: 24px;
+    font-weight: bold;
+    font-size: 2em;
+
+    @media screen and (max-width: 680px) {
+      font-size: 1.5em;
+    }
   }
 
   .combination-description {
@@ -24,12 +30,17 @@ export default function PageCombination() {
   return (
     <div className="container">
       <CombinationWrapper>
-        <h1 className="title">
-          누구도 알려주지 않는 써브웨이의 꿀조합!
-        </h1>
+        <div className="title">
+          <span>
+            누구도 알려주지 않는<br />
+          </span>
+          <span>
+            써브웨이의 꿀조합!
+          </span>
+        </div>
         <div className="combination-description">
           <div>
-            다양한 메뉴와 다양한 소스로 만드는 다양한 조합!
+            다양한 메뉴와 소스로 만드는 써브웨이!
           </div>
           <div>
             이렇게 먹으면 더 맛있을지도?

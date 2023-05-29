@@ -22,10 +22,19 @@ SwiperCore.use([Pagination])
 
 const SwiperStyleRot = styled.div`
   --swiper-theme-color: var(--primary-yellow);
+  margin: auto;
 
   .swiper-slide {
     display: flex;
     justify-content: center;
+  }
+
+  @media screen and (min-width: 1024px) {
+    max-width: 900px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    max-width: 600px;
   }
 `
 
