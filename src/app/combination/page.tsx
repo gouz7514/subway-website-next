@@ -22,18 +22,20 @@ const CombinationWrapper = styled.div`
 
 export default function PageCombination() {
   return (
-    <CombinationWrapper className="container">
-      <h1 className="title">
-        누구도 알려주지 않는 써브웨이의 꿀조합!
-      </h1>
-      <div className="combination-description">
-        <div>
-          다양한 메뉴와 다양한 소스로 만드는 다양한 조합!
+    <div className="container">
+      <CombinationWrapper>
+        <h1 className="title">
+          누구도 알려주지 않는 써브웨이의 꿀조합!
+        </h1>
+        <div className="combination-description">
+          <div>
+            다양한 메뉴와 다양한 소스로 만드는 다양한 조합!
+          </div>
+          <div>
+            이렇게 먹으면 더 맛있을지도?
+          </div>
         </div>
-        <div>
-          이렇게 먹으면 더 맛있을지도?
-        </div>
-      </div>
-    </CombinationWrapper>
+      </CombinationWrapper>
+    </div>
   )
 }
