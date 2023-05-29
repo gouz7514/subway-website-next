@@ -48,13 +48,44 @@ const HeaderStyle = styled.header`
 
       .header-links {
         display: flex;
-        gap: 8px;
+        gap: 12px;
 
         .header-link {
           cursor: pointer;
+          background-color: var(--primary-yellow);
+          padding: 12px;
+          position: relative;
 
           &:hover {
-            text-decoration: underline;
+            transform: scale(0.95);
+          }
+
+          .header-link-text {
+            font-size: 16px;
+            font-weight: 900;
+            color: white;
+
+            &:before {
+              content: '';
+              position: absolute;
+              bottom: -4px;
+              height: 4px;
+              width: 100%;
+              left: 2px;
+              transform: skewX(45deg);
+              background-color: #E2B537;
+            }
+
+            &:after {
+              content: '';
+              position: absolute;
+              right: -4px;
+              height: 100%;
+              width: 4px;
+              bottom: -2px;
+              transform: skewY(45deg);
+              background-color: #E2B537;
+            }
           }
         }
 
@@ -174,15 +205,21 @@ export default function Header() {
           <div className="header-menu">
             <div className={ `header-toggle ${isMenuVisible ? 'close' : 'open' }` } onClick={handleMenuClick} />
             <div className="header-links">
-              <div className="header-link">
-                <Link href="/usage">사용 방법</Link>
-              </div>
-              <div className="header-link">
-                <Link href="/ingredients">재료 소개</Link>
-              </div>
-              <div className="header-link">
-                <Link href="/combination">조합</Link>
-              </div>
+              <Link href="/usage" className="header-link">
+                <div className="header-link-text">
+                  사용 방법
+                </div>
+              </Link>
+              <Link href="/ingredients" className="header-link">
+                <div className="header-link-text">
+                  재료 소개
+                </div>
+              </Link>
+              <Link href="/combination" className="header-link">
+                <div className="header-link-text">
+                  조합 추천
+                </div>
+              </Link>
             </div>
           </div>
           { isMobile && 

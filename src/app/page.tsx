@@ -15,7 +15,7 @@ const Intro = styled.div`
   .intro-text {
     font-size: 2em;
     font-weight: bold;
-    margin-bottom: 24px;
+    margin: 24px 0;
 
     @media screen and (max-width: 1024px) {
       font-size: 1.2em;
@@ -60,6 +60,11 @@ const Intro = styled.div`
       .intro-item-title {
         margin-bottom: 12px;
       }
+
+      @media screen and (max-width: 450px) {
+        width: 260px;
+        height: 260px;
+      }
     }
 
     @media screen and (max-width: 1024px) {
@@ -90,7 +95,7 @@ export default function Home() {
               <div className="intro-item-description">
                 <span>
                   알고 보면 쉬워요!<br />
-                  써브웨이 주문 방법 알려드릴게요
+                  써브웨이 주문 방법 알려드려요
                 </span>
               </div>
             </div>
@@ -119,7 +124,7 @@ export default function Home() {
               </div>
               <div className="intro-item-description">
                 <span>
-                  맨날 같은 메뉴는 그만!<br />
+                  매일 같은 메뉴는 그만!<br />
                   숨겨진 꿀조합을 추천해드려요
                 </span>
               </div>

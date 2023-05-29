@@ -11,8 +11,8 @@ const IngredientsList = styled.div`
 
   .ingredient-grid {
     display: grid;
-    grid-template-columns: repeat(2, 450px);
-    grid-template-rows: repeat(2, 450px);
+    grid-template-columns: repeat(2, 350px);
+    grid-template-rows: repeat(2, 350px);
     gap: 24px;
     padding: 24px;
     max-width: 1024px;
