@@ -59,6 +59,10 @@ a {
   justify-content: center;
 }
 
+.text-green {
+  color: var(--primary-green);
+}
+
 /* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

@@ -1,7 +1,12 @@
+'use client'
+
+import IngredientTitle from "../components/IntredientTitle"
+
 export default function PageSauce() {
   return (
-    <>
-      <div>Sauce</div>
-    </>
+    <IngredientTitle>
+      <div className="ingredient-description">
+      </div>
+    </IngredientTitle>
   )
 }

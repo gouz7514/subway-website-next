@@ -25,14 +25,30 @@ const IngredientsList = styled.div`
     }
 
     @media screen and (max-width: 680px) {
-      grid-template-columns: repeat(1, 320px);
-      grid-template-rows: repeat(4, 320px);
+      grid-template-columns: repeat(2, minmax(50%, 200px));
+      grid-template-rows: repeat(2, minmax(50%, 200px));
+    }
+  }
+
+  .ingredient-list {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .ingredient-item {
+      width: 100%;
+      height: 100%;
     }
 
     .ingredient-image {
-      width: 200px;
-      height: 200px;
-      background-size: 200px 200px;
+      width: 100%;
+      height: 100%;
+      background-size: 100% 100%;
       background-repeat: no-repeat;
 
       &.bread {
@@ -51,16 +67,6 @@ const IngredientsList = styled.div`
         background-image: url('/image/image-vegetable.svg');
       }
     }
-  }
-
-  .ingredient-list {
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-    height: 100%;
-    border-radius: 12px;
-    padding: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     &:hover {
       transform: translateY(-6px) scale(1.05);
