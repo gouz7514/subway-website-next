@@ -18,7 +18,6 @@ const HeaderStyle = styled.header`
     align-items: center;
     width: 100%;
     height: 40px;
-    font-size: 1.3em;
     color: black;
     font-weight: bold;
 
@@ -55,14 +54,15 @@ const HeaderStyle = styled.header`
           background-color: var(--primary-yellow);
           padding: 12px;
           position: relative;
+          transform: scale(0.95);
 
           &:hover {
-            transform: scale(0.95);
+            transform: scale(0.92);
           }
 
           .header-link-text {
-            font-size: 16px;
-            font-weight: 900;
+            font-size: 20px;
+            font-weight: bold;
             color: white;
 
             &:before {
