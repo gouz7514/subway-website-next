@@ -7,7 +7,7 @@ const SwiperInner = styled.div`
   width: 100%;
   max-width: calc(100% - 48px);
   margin: 24px;
-  padding: 40px;
+  padding: 24px;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   position: relative;
@@ -23,12 +23,12 @@ const SwiperInner = styled.div`
   .usage-title {
     font-size: 32px;
     font-weight: bold;
-    margin-bottom: 24px;
+    margin-bottom: 12px;
   }
 
   .usage-content {
     word-break: keep-all;
-    line-height: 1.5em;
+    line-height: 1.3em;
     flex: 1;
     height: 50%;
 
@@ -39,7 +39,7 @@ const SwiperInner = styled.div`
   }
 
   @media screen and (max-width: 600px) {
-    padding: 24px;
+    padding: 12px;
   }
 `
 
@@ -47,16 +47,18 @@ const ItemWrapper = styled.div`
   display: grid;
   gap: 12px;
   grid-template-columns: repeat(2, 1fr);
-  height: 90%;
+  height: calc(100% - 60px);
   overflow: auto;
   padding: 12px 6px;
+  margin-top: 12px;
 
   &::-webkit-scrollbar {
     display: none;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 1024px) {
     grid-template-columns: repeat(1, 1fr);
+    height: 80%;
   }
 
   .item {
@@ -94,15 +96,15 @@ const ItemWrapper = styled.div`
     }
 
     @media screen and (max-width: 600px) {
-      height: 380px;
+      height: 320px;
 
       .item-image {
-        height: 240px;
+        height: 180px;
         transform: scale(0.9);
       }
 
       .item-content {
-        height: 140px;;
+        height: 140px;
       }
     }
   }
@@ -125,8 +127,6 @@ export const UsageMenu = () => {
       console.error(error)
     }
   }
-
-  
 
   return (
     <SwiperInner>
@@ -179,6 +179,23 @@ export const UsageMenu = () => {
 }
 
 export const UsageBread = () => {
+  const [breads, setBreads] = useState([])
+
+  useEffect(() => {
+    getBreads()
+  }, [])
+
+  const getBreads = async () => {
+    try {
+      const response = await fetch('/api/ingredients?type=bread')
+      const data = await response.json()
+
+      setBreads(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <SwiperInner>
       <div className="usage-step">
@@ -194,12 +211,57 @@ export const UsageBread = () => {
         <div>
           추가비용 없이 6가지 빵 중 선택 가능합니다.
         </div>
+        <ItemWrapper className="item-wrapper">
+          {
+            breads.map((bread: any) => (
+              <div key={bread.id} className="item">
+                <div className="item-image">
+                  <Image
+                    src={bread.image}
+                    alt={bread.title}
+                    fill
+                    sizes="100%"
+                  />
+                </div>
+                <div className="item-content">
+                  <div className="item-title">
+                    { bread.title}
+                  </div>
+                  <div className='item-description'>
+                    { bread.description }
+                  </div>
+                  <div className='item-kcal'>
+                    { bread.kcal } kcal
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </ItemWrapper>
       </div>
     </SwiperInner>
   )
 }
 
 export const UsageCheese = () => {
+  const [cheeses, setCheeses] = useState([])
+
+  useEffect(() => {
+    getCheeses()
+  }, [])
+
+  const getCheeses = async () => {
+    try {
+      const response = await fetch('/api/ingredients?type=cheese')
+      const data = await response.json()
+
+      setCheeses(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+
   return (
     <SwiperInner>
       <div className="usage-step">
@@ -215,12 +277,57 @@ export const UsageCheese = () => {
         <div className="usage-content-extra">
           (추가 시 : 15cm : 1,400원 / 30cm : 2,800원)
         </div>
+        <ItemWrapper className="item-wrapper">
+          {
+            cheeses.map((cheese: any) => (
+              <div key={cheese.id} className="item">
+                <div className="item-image">
+                  <Image
+                    src={cheese.image}
+                    alt={cheese.title}
+                    fill
+                    sizes="100%"
+                  />
+                </div>
+                <div className="item-content">
+                  <div className="item-title">
+                    { cheese.title}
+                  </div>
+                  <div className='item-description'>
+                    { cheese.description }
+                  </div>
+                  <div className='item-kcal'>
+                    { cheese.kcal } kcal
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </ItemWrapper>
       </div>
     </SwiperInner>
   )
 }
 
 export const UsageVegetable = () => {
+  const [vegetables, setVegetables] = useState([])
+
+  useEffect(() => {
+    getVegetables()
+  }, [])
+
+  const getVegetables = async () => {
+    try {
+      const response = await fetch('/api/ingredients?type=vegetable')
+      const data = await response.json()
+
+      setVegetables(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+
   return (
     <SwiperInner>
       <div className="usage-step">
@@ -233,12 +340,56 @@ export const UsageVegetable = () => {
         <div>
           원하지 않는 채소는 빼고, 원하는 채소는 더해보세요!
         </div>
+        <ItemWrapper className="item-wrapper">
+          {
+            vegetables.map((vegetable: any) => (
+              <div key={vegetable.id} className="item">
+                <div className="item-image">
+                  <Image
+                    src={vegetable.image}
+                    alt={vegetable.title}
+                    fill
+                    sizes="100%"
+                  />
+                </div>
+                <div className="item-content">
+                  <div className="item-title">
+                    { vegetable.title}
+                  </div>
+                  <div className='item-description'>
+                    { vegetable.description }
+                  </div>
+                  <div className='item-kcal'>
+                    { vegetable.kcal } kcal
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </ItemWrapper>
       </div>
     </SwiperInner>
   )
 }
 
-export const UsageExtra = () => {
+export const UsageSauce = () => {
+  const [sauces, setSauces] = useState([])
+
+  useEffect(() => {
+    getSauces()
+  }, [])
+
+  const getSauces = async () => {
+    try {
+      const response = await fetch('/api/ingredients?type=sauce')
+      const data = await response.json()
+
+      setSauces(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <SwiperInner>
       <div className="usage-step">
@@ -251,6 +402,33 @@ export const UsageExtra = () => {
         <div>
           가격 차이 없이 원하는 소스를 마음껏 선택하세요!
         </div>
+        <ItemWrapper className="item-wrapper">
+          {
+            sauces.map((sauce: any) => (
+              <div key={sauce.id} className="item">
+                <div className="item-image">
+                  <Image
+                    src={sauce.image}
+                    alt={sauce.title}
+                    fill
+                    sizes="100%"
+                  />
+                </div>
+                <div className="item-content">
+                  <div className="item-title">
+                    { sauce.title}
+                  </div>
+                  <div className='item-description'>
+                    { sauce.description }
+                  </div>
+                  <div className='item-kcal'>
+                    { sauce.kcal } kcal
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </ItemWrapper>
       </div>
     </SwiperInner>
   )

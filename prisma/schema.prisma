@@ -33,7 +33,7 @@ model Menu {
   title        String        @db.VarChar(255)
   image        String        @db.VarChar(255)
   description  String        @db.VarChar(255)
-  kcal         Int
+  kcal         Float
 }
 
 model Ingredient {
@@ -41,6 +41,6 @@ model Ingredient {
   title        String        @db.VarChar(255)
   image        String        @db.VarChar(255)
   description  String        @db.VarChar(255)
-  kcal         Int
+  kcal         Float
   type         String
 }

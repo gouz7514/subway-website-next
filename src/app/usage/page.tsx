@@ -14,7 +14,7 @@ import {
   UsageBread,
   UsageCheese,
   UsageVegetable,
-  UsageExtra,
+  UsageSauce,
   UsageSet
 } from './UsageList'
 
@@ -64,7 +64,7 @@ export default function Usage() {
             <UsageVegetable />
           </SwiperSlide>
           <SwiperSlide>
-            <UsageExtra />
+            <UsageSauce />
           </SwiperSlide>
           <SwiperSlide>
             <UsageSet />

@@ -1,0 +1,26 @@
+import prisma from "@/lib/prisma"
+import { NextResponse } from "next/server"
+import { NextApiRequest, NextApiResponse } from 'next'
+import { parse } from "url"
+
+export async function GET(req: NextApiRequest, res: NextApiResponse) {
+  const { query } = parse(req.url!, true)
+  const { type } = query
+
+  let ingredients
+
+  if (type) {
+    ingredients = await prisma.ingredient.findMany({
+      where: {
+        type: {
+          equals: type as string
+        }
+      }
+    })
+  } else {
+    ingredients = await prisma.ingredient.findMany()
+  }
+
+
+  return NextResponse.json(ingredients)
+}
