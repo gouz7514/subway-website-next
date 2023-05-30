@@ -22,10 +22,12 @@ type TItleProps = {
 
 export default function IngredientTitle({ children }: TItleProps) {
   return (
-    <TitleWrapper className="container">
-      <DescriptionWrapper>
-        {children}
-      </DescriptionWrapper>
-    </TitleWrapper>
+    <div className="container">
+      <TitleWrapper>
+        <DescriptionWrapper>
+          {children}
+        </DescriptionWrapper>
+      </TitleWrapper>
+    </div>
   )
 }
