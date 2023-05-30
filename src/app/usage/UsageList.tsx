@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Loading from '../components/Loading'
 
 const SwiperInner = styled.div`
   height: 90%;
@@ -112,6 +113,7 @@ const ItemWrapper = styled.div`
 
 export const UsageMenu = () => {
   const [menus, setMenus] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     getMenus()
@@ -123,6 +125,7 @@ export const UsageMenu = () => {
       const data = await response.json()
   
       setMenus(data)
+      setLoading(false)
     } catch (error) {
       console.error(error)
     }
@@ -146,33 +149,36 @@ export const UsageMenu = () => {
         <div>
           샐러드 중 선택 가능합니다.
         </div>
-        <ItemWrapper className="item-wrapper">
-          {
-            menus.map((menu: any) => (
-              <div key={menu.id} className="item">
-                <div className="item-image">
-                  <Image
-                    src={menu.image}
-                    alt={menu.title}
-                    fill
-                    sizes="100%"
-                  />
+        { loading ?
+          <Loading /> :
+          <ItemWrapper className="item-wrapper">
+            {
+              menus.map((menu: any) => (
+                <div key={menu.id} className="item">
+                  <div className="item-image">
+                    <Image
+                      src={menu.image}
+                      alt={menu.title}
+                      fill
+                      sizes="100%"
+                    />
+                  </div>
+                  <div className="item-content">
+                    <div className="item-title">
+                      { menu.title}
+                    </div>
+                    <div className='item-description'>
+                      { menu.description }
+                    </div>
+                    <div className='item-kcal'>
+                      { menu.kcal } kcal
+                    </div>
+                  </div>
                 </div>
-                <div className="item-content">
-                  <div className="item-title">
-                    { menu.title}
-                  </div>
-                  <div className='item-description'>
-                    { menu.description }
-                  </div>
-                  <div className='item-kcal'>
-                    { menu.kcal } kcal
-                  </div>
-                </div>
-              </div>
-            ))
-          }
-        </ItemWrapper>
+              ))
+            }
+          </ItemWrapper>
+        }
       </div>
     </SwiperInner>
   )
@@ -180,6 +186,7 @@ export const UsageMenu = () => {
 
 export const UsageBread = () => {
   const [breads, setBreads] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     getBreads()
@@ -191,6 +198,7 @@ export const UsageBread = () => {
       const data = await response.json()
 
       setBreads(data)
+      setLoading(false)
     } catch (error) {
       console.error(error)
     }
@@ -211,33 +219,36 @@ export const UsageBread = () => {
         <div>
           추가비용 없이 6가지 빵 중 선택 가능합니다.
         </div>
-        <ItemWrapper className="item-wrapper">
-          {
-            breads.map((bread: any) => (
-              <div key={bread.id} className="item">
-                <div className="item-image">
-                  <Image
-                    src={bread.image}
-                    alt={bread.title}
-                    fill
-                    sizes="100%"
-                  />
+        { loading ? 
+          <Loading /> :
+          <ItemWrapper className="item-wrapper">
+            {
+              breads.map((bread: any) => (
+                <div key={bread.id} className="item">
+                  <div className="item-image">
+                    <Image
+                      src={bread.image}
+                      alt={bread.title}
+                      fill
+                      sizes="100%"
+                    />
+                  </div>
+                  <div className="item-content">
+                    <div className="item-title">
+                      { bread.title}
+                    </div>
+                    <div className='item-description'>
+                      { bread.description }
+                    </div>
+                    <div className='item-kcal'>
+                      { bread.kcal } kcal
+                    </div>
+                  </div>
                 </div>
-                <div className="item-content">
-                  <div className="item-title">
-                    { bread.title}
-                  </div>
-                  <div className='item-description'>
-                    { bread.description }
-                  </div>
-                  <div className='item-kcal'>
-                    { bread.kcal } kcal
-                  </div>
-                </div>
-              </div>
-            ))
-          }
-        </ItemWrapper>
+              ))
+            }
+          </ItemWrapper>
+        }
       </div>
     </SwiperInner>
   )
@@ -245,6 +256,7 @@ export const UsageBread = () => {
 
 export const UsageCheese = () => {
   const [cheeses, setCheeses] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     getCheeses()
@@ -256,6 +268,7 @@ export const UsageCheese = () => {
       const data = await response.json()
 
       setCheeses(data)
+      setLoading(false)
     } catch (error) {
       console.error(error)
     }
@@ -277,33 +290,36 @@ export const UsageCheese = () => {
         <div className="usage-content-extra">
           (추가 시 : 15cm : 1,400원 / 30cm : 2,800원)
         </div>
-        <ItemWrapper className="item-wrapper">
-          {
-            cheeses.map((cheese: any) => (
-              <div key={cheese.id} className="item">
-                <div className="item-image">
-                  <Image
-                    src={cheese.image}
-                    alt={cheese.title}
-                    fill
-                    sizes="100%"
-                  />
+        { loading ?
+          <Loading /> :
+          <ItemWrapper className="item-wrapper">
+            {
+              cheeses.map((cheese: any) => (
+                <div key={cheese.id} className="item">
+                  <div className="item-image">
+                    <Image
+                      src={cheese.image}
+                      alt={cheese.title}
+                      fill
+                      sizes="100%"
+                    />
+                  </div>
+                  <div className="item-content">
+                    <div className="item-title">
+                      { cheese.title}
+                    </div>
+                    <div className='item-description'>
+                      { cheese.description }
+                    </div>
+                    <div className='item-kcal'>
+                      { cheese.kcal } kcal
+                    </div>
+                  </div>
                 </div>
-                <div className="item-content">
-                  <div className="item-title">
-                    { cheese.title}
-                  </div>
-                  <div className='item-description'>
-                    { cheese.description }
-                  </div>
-                  <div className='item-kcal'>
-                    { cheese.kcal } kcal
-                  </div>
-                </div>
-              </div>
-            ))
-          }
-        </ItemWrapper>
+              ))
+            }
+          </ItemWrapper>
+        }
       </div>
     </SwiperInner>
   )
@@ -311,6 +327,7 @@ export const UsageCheese = () => {
 
 export const UsageVegetable = () => {
   const [vegetables, setVegetables] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     getVegetables()
@@ -322,6 +339,7 @@ export const UsageVegetable = () => {
       const data = await response.json()
 
       setVegetables(data)
+      setLoading(false)
     } catch (error) {
       console.error(error)
     }
@@ -340,33 +358,36 @@ export const UsageVegetable = () => {
         <div>
           원하지 않는 채소는 빼고, 원하는 채소는 더해보세요!
         </div>
-        <ItemWrapper className="item-wrapper">
-          {
-            vegetables.map((vegetable: any) => (
-              <div key={vegetable.id} className="item">
-                <div className="item-image">
-                  <Image
-                    src={vegetable.image}
-                    alt={vegetable.title}
-                    fill
-                    sizes="100%"
-                  />
+        { loading ?
+          <Loading /> :  
+          <ItemWrapper className="item-wrapper">
+            {
+              vegetables.map((vegetable: any) => (
+                <div key={vegetable.id} className="item">
+                  <div className="item-image">
+                    <Image
+                      src={vegetable.image}
+                      alt={vegetable.title}
+                      fill
+                      sizes="100%"
+                    />
+                  </div>
+                  <div className="item-content">
+                    <div className="item-title">
+                      { vegetable.title}
+                    </div>
+                    <div className='item-description'>
+                      { vegetable.description }
+                    </div>
+                    <div className='item-kcal'>
+                      { vegetable.kcal } kcal
+                    </div>
+                  </div>
                 </div>
-                <div className="item-content">
-                  <div className="item-title">
-                    { vegetable.title}
-                  </div>
-                  <div className='item-description'>
-                    { vegetable.description }
-                  </div>
-                  <div className='item-kcal'>
-                    { vegetable.kcal } kcal
-                  </div>
-                </div>
-              </div>
-            ))
-          }
-        </ItemWrapper>
+              ))
+            }
+          </ItemWrapper>
+        }
       </div>
     </SwiperInner>
   )
@@ -374,6 +395,7 @@ export const UsageVegetable = () => {
 
 export const UsageSauce = () => {
   const [sauces, setSauces] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     getSauces()
@@ -385,6 +407,7 @@ export const UsageSauce = () => {
       const data = await response.json()
 
       setSauces(data)
+      setLoading(false)
     } catch (error) {
       console.error(error)
     }
@@ -402,33 +425,36 @@ export const UsageSauce = () => {
         <div>
           가격 차이 없이 원하는 소스를 마음껏 선택하세요!
         </div>
-        <ItemWrapper className="item-wrapper">
-          {
-            sauces.map((sauce: any) => (
-              <div key={sauce.id} className="item">
-                <div className="item-image">
-                  <Image
-                    src={sauce.image}
-                    alt={sauce.title}
-                    fill
-                    sizes="100%"
-                  />
+        { loading ?
+          <Loading /> :
+          <ItemWrapper className="item-wrapper">
+            {
+              sauces.map((sauce: any) => (
+                <div key={sauce.id} className="item">
+                  <div className="item-image">
+                    <Image
+                      src={sauce.image}
+                      alt={sauce.title}
+                      fill
+                      sizes="100%"
+                    />
+                  </div>
+                  <div className="item-content">
+                    <div className="item-title">
+                      { sauce.title}
+                    </div>
+                    <div className='item-description'>
+                      { sauce.description }
+                    </div>
+                    <div className='item-kcal'>
+                      { sauce.kcal } kcal
+                    </div>
+                  </div>
                 </div>
-                <div className="item-content">
-                  <div className="item-title">
-                    { sauce.title}
-                  </div>
-                  <div className='item-description'>
-                    { sauce.description }
-                  </div>
-                  <div className='item-kcal'>
-                    { sauce.kcal } kcal
-                  </div>
-                </div>
-              </div>
-            ))
-          }
-        </ItemWrapper>
+              ))
+            }
+          </ItemWrapper>
+        }
       </div>
     </SwiperInner>
   )
