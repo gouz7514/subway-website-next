@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Project {
-  id        String  @idㅑ
+  id        String  @id
   title     String
   content   String?
   published Boolean @default(false)
