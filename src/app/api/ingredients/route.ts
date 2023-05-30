@@ -1,9 +1,9 @@
 import prisma from "@/lib/prisma"
-import { NextResponse } from "next/server"
+import { NextResponse, NextRequest } from "next/server"
 import { NextApiRequest, NextApiResponse } from 'next'
 import { parse } from "url"
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: NextRequest, res: NextResponse) {
   const { query } = parse(req.url!, true)
   const { type } = query
 
