@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 const SwiperInner = styled.div`
   height: 90%;
@@ -8,6 +10,9 @@ const SwiperInner = styled.div`
   padding: 40px;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 
   .usage-step {
     color: var(--primary-green);
@@ -24,6 +29,8 @@ const SwiperInner = styled.div`
   .usage-content {
     word-break: keep-all;
     line-height: 1.5em;
+    flex: 1;
+    height: 50%;
 
     .usage-content-extra {
       margin-top: 12px;
@@ -36,7 +43,91 @@ const SwiperInner = styled.div`
   }
 `
 
+const ItemWrapper = styled.div`
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  height: 90%;
+  overflow: auto;
+  padding: 12px 6px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .item {
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    height: 400px;
+    position: relative;
+
+    .item-image {
+      text-align: center;
+      height: 70%;
+      position: relative;
+    }
+
+    .item-content {
+      padding: 12px;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      height: 30%;
+
+      .item-title {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+
+      .item-description {
+        font-size: 0.9em;
+      }
+
+      .item-kcal {
+        font-size: 1.1em;
+        color: var(--primary-yellow);
+        font-weight: bold;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      height: 380px;
+
+      .item-image {
+        height: 240px;
+        transform: scale(0.9);
+      }
+
+      .item-content {
+        height: 140px;;
+      }
+    }
+  }
+`
+
 export const UsageMenu = () => {
+  const [menus, setMenus] = useState([])
+
+  useEffect(() => {
+    getMenus()
+  }, [])
+
+  const getMenus = async () => {
+    try {
+      const response = await fetch('/api/menus')
+      const data = await response.json()
+  
+      setMenus(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  
+
   return (
     <SwiperInner>
       <div className="usage-step">
@@ -55,6 +146,33 @@ export const UsageMenu = () => {
         <div>
           샐러드 중 선택 가능합니다.
         </div>
+        <ItemWrapper className="item-wrapper">
+          {
+            menus.map((menu: any) => (
+              <div key={menu.id} className="item">
+                <div className="item-image">
+                  <Image
+                    src={menu.image}
+                    alt={menu.title}
+                    fill
+                    sizes="100%"
+                  />
+                </div>
+                <div className="item-content">
+                  <div className="item-title">
+                    { menu.title}
+                  </div>
+                  <div className='item-description'>
+                    { menu.description }
+                  </div>
+                  <div className='item-kcal'>
+                    { menu.kcal } kcal
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </ItemWrapper>
       </div>
     </SwiperInner>
   )
