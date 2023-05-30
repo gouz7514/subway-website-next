@@ -14,7 +14,7 @@ import {
   UsageBread,
   UsageCheese,
   UsageVegetable,
-  UsageExtra,
+  UsageSauce,
   UsageSet
 } from './UsageList'
 
@@ -39,35 +39,38 @@ const SwiperStyleRot = styled.div`
 `
 
 export default function Usage() {
+
   return (
-    <SwiperStyleRot>
-      <Swiper
-        modules={[Pagination]}
-        spaceBetween={12}
-        slidesPerView={1}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
-        pagination={{ clickable: true }}
-      >
-        <SwiperSlide>
-          <UsageMenu />
-        </SwiperSlide>
-        <SwiperSlide>
-          <UsageBread />
-        </SwiperSlide>
-        <SwiperSlide>
-          <UsageCheese />
-        </SwiperSlide>
-        <SwiperSlide>
-          <UsageVegetable />
-        </SwiperSlide>
-        <SwiperSlide>
-          <UsageExtra />
-        </SwiperSlide>
-        <SwiperSlide>
-          <UsageSet />
-        </SwiperSlide>
-      </Swiper>
-    </SwiperStyleRot>
+    <>
+      <SwiperStyleRot>
+        <Swiper
+          modules={[Pagination]}
+          spaceBetween={12}
+          slidesPerView={1}
+          onSlideChange={() => console.log('slide change')}
+          onSwiper={(swiper) => console.log(swiper)}
+          pagination={{ clickable: true }}
+        >
+          <SwiperSlide>
+            <UsageMenu />
+          </SwiperSlide>
+          <SwiperSlide>
+            <UsageBread />
+          </SwiperSlide>
+          <SwiperSlide>
+            <UsageCheese />
+          </SwiperSlide>
+          <SwiperSlide>
+            <UsageVegetable />
+          </SwiperSlide>
+          <SwiperSlide>
+            <UsageSauce />
+          </SwiperSlide>
+          <SwiperSlide>
+            <UsageSet />
+          </SwiperSlide>
+        </Swiper>
+      </SwiperStyleRot>
+    </>
   )
 }
