@@ -34,13 +34,25 @@ const SwiperInner = styled.div`
     height: 50%;
 
     .usage-content-extra {
-      margin-top: 12px;
+      margin-top: 6px;
       font-size: 0.8em;
     }
   }
 
   @media screen and (max-width: 600px) {
     padding: 12px;
+
+    .usage-step {
+      font-size: 20px;
+    }
+
+    .usage-title {
+      font-size: 24px;
+    }
+
+    .usage-content {
+      line-height: 1.2em;
+    }
   }
 `
 
