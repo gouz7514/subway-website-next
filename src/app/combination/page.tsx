@@ -2,8 +2,9 @@
 
 import styled from 'styled-components'
 import { useState, useEffect } from "react"
-import { CombinationTypes, IngredientTypes } from '@/types/types'
+import { CombinationTypes } from '@/types/types'
 import CombinationItem from '../components/CombinationItem'
+import Loading from '../components/Loading'
 
 const CombinationWrapper = styled.div`
   display: flex;
@@ -81,6 +82,8 @@ export default function PageCombination() {
       </div>
       <div className="combination-list">
         {
+          loading ?
+          <Loading /> :
           combinations.map((combination: CombinationTypes) => (
             <CombinationItem key={combination.id} combination={combination} />
           ))
