@@ -18,7 +18,7 @@ const Intro = styled.div`
     margin: 24px 0;
 
     @media screen and (max-width: 1024px) {
-      font-size: 1.2em;
+      font-size: 1.5em;
     }
   }
 
@@ -27,6 +27,7 @@ const Intro = styled.div`
     gap: 12px;
     align-items: center;
     transition: transform 0.3s ease-in-out;
+    margin-bottom: 40px;
 
     .intro-link {
       border-radius: 12px;
@@ -70,10 +71,6 @@ const Intro = styled.div`
     @media screen and (max-width: 1024px) {
       flex-direction: column;
     }
-  }
-
-  @media screen and (min-width: 1024px) {
-    min-height: calc(100vh - 72px);
   }
 `
 
