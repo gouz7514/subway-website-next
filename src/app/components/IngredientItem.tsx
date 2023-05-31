@@ -2,7 +2,7 @@ import { IngredientTypes } from "@/types/types";
 import styled from "styled-components"
 import Image from "next/image";
 
-const IngredientWrapper = styled.div`
+const IngredientItemWrapper = styled.div`
   .item {
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
@@ -45,7 +45,7 @@ export default function IngredientItem({ ingredient }: { ingredient: IngredientT
   const { id, title, image, description, kcal, type } = ingredient
 
   return (
-    <IngredientWrapper>
+    <IngredientItemWrapper>
       <div className="item">
         <div className="item-image">
           <Image
@@ -69,6 +69,6 @@ export default function IngredientItem({ ingredient }: { ingredient: IngredientT
           </div>
         </div>
       </div>
-    </IngredientWrapper>
+    </IngredientItemWrapper>
   )
 }
