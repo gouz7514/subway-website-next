@@ -34,6 +34,7 @@ model Menu {
   image        String        @db.VarChar(255)
   description  String        @db.VarChar(255)
   kcal         Float
+  combinations Combination[]
 }
 
 model Ingredient {
@@ -43,4 +44,12 @@ model Ingredient {
   description  String        @db.VarChar(255)
   kcal         Float
   type         String
+  combinations Combination[] @relation("CombinationIngredients")
+}
+
+model Combination {
+  id           Int           @id
+  menu         Menu          @relation(fields: [menuId], references: [id])
+  menuId       Int
+  ingredients  Ingredient[]  @relation("CombinationIngredients")
 }
