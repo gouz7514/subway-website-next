@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { IngredientTypes } from '@/types/types'
 import Loading from '../components/Loading'
 import IngredientItem from '../components/IngredientItem'
+import IngredientWrapper from '../components/IngredientWrapper'
 
 const SwiperInner = styled.div`
   height: 90%;
@@ -60,40 +61,6 @@ const SwiperInner = styled.div`
   }
 `
 
-const IngredientWrapper = styled.div`
-  display: grid;
-  gap: 12px;
-  height: calc(100% - 60px);
-  overflow: auto;
-  padding: 12px 6px;
-  margin-top: 12px;
-  grid-template-columns: repeat(5, 1fr);
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  @media screen and (max-width: 2000px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  @media screen and (max-width: 1500px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media screen and (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media screen and (max-width: 600px) {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  &.cheese {
-    grid-template-rows: repeat(2, 0.5fr);
-  }
-`
-
 export const UsageMenu = () => {
   const [menus, setMenus] = useState([])
   const [loading, setLoading] = useState(true)
@@ -134,7 +101,7 @@ export const UsageMenu = () => {
         </div>
         { loading ?
           <Loading /> :
-          <IngredientWrapper className="item-wrapper">
+          <IngredientWrapper>
             {
               menus.map((menu: IngredientTypes) => (
                 <IngredientItem key={menu.id} ingredient={menu} />
@@ -184,7 +151,7 @@ export const UsageBread = () => {
         </div>
         { loading ? 
           <Loading /> :
-          <IngredientWrapper className="item-wrapper">
+          <IngredientWrapper>
             {
               breads.map((bread: IngredientTypes) => (
                 <IngredientItem key={bread.id} ingredient={bread} />
@@ -235,7 +202,7 @@ export const UsageCheese = () => {
         </div>
         { loading ?
           <Loading /> :
-          <IngredientWrapper className="item-wrapper cheese">
+          <IngredientWrapper extraClass='cheese'>
             {
               cheeses.map((cheese: IngredientTypes) => (
                 <IngredientItem key={cheese.id} ingredient={cheese} />
@@ -283,7 +250,7 @@ export const UsageVegetable = () => {
         </div>
         { loading ?
           <Loading /> :  
-          <IngredientWrapper className="item-wrapper">
+          <IngredientWrapper>
             {
               vegetables.map((vegetable: IngredientTypes) => (
                 <IngredientItem key={vegetable.id} ingredient={vegetable} />
@@ -330,7 +297,7 @@ export const UsageSauce = () => {
         </div>
         { loading ?
           <Loading /> :
-          <IngredientWrapper className="item-wrapper">
+          <IngredientWrapper>
             {
               sauces.map((sauce: IngredientTypes) => (
                 <IngredientItem key={sauce.id} ingredient={sauce} />
@@ -377,7 +344,7 @@ export const UsageSet = () => {
         </div>
         { loading ?
           <Loading /> :  
-          <IngredientWrapper className="item-wrapper">
+          <IngredientWrapper>
             {
               sets.map((set: IngredientTypes) => (
                 <IngredientItem key={set.id} ingredient={set} />
