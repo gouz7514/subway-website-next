@@ -30,7 +30,7 @@ export default function PageVegetables() {
   }
 
   return (
-    <IngredientTitle>
+    <IngredientTitle mainTitle="야채" subTitle="신선하고 다양한 써브웨이의 야채!">
       { loading ? 
         <Loading /> :
         <IngredientWrapper>

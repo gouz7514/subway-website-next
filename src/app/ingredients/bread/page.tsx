@@ -30,7 +30,7 @@ export default function PageBread() {
   }
 
   return (
-    <IngredientTitle>
+    <IngredientTitle mainTitle="빵" subTitle="매장에서 직접 구운 6가지 빵을 소개합니다">
       { loading ? 
         <Loading /> :
         <IngredientWrapper>

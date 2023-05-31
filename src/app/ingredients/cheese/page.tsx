@@ -30,7 +30,7 @@ export default function PageCheese() {
   }
 
   return (
-    <IngredientTitle>
+    <IngredientTitle mainTitle="치즈" subTitle="3가지 치즈 중 입맛대로 골라보세요!">
       { loading ? 
         <Loading /> :
         <IngredientWrapper>

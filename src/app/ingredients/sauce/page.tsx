@@ -30,7 +30,7 @@ export default function PageSauce() {
   }
 
   return (
-    <IngredientTitle>
+    <IngredientTitle mainTitle="소스" subTitle="뭘 먹어야할지 모르겠다면 '추천해주세요!'">
       { loading ? 
         <Loading /> :
         <IngredientWrapper>
