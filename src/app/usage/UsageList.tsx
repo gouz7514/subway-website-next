@@ -32,6 +32,7 @@ const SwiperInner = styled.div`
     line-height: 1.3em;
     flex: 1;
     height: 50%;
+    overflow: hidden;
 
     .usage-content-extra {
       margin-top: 6px;
@@ -59,25 +60,39 @@ const SwiperInner = styled.div`
 const ItemWrapper = styled.div`
   display: grid;
   gap: 12px;
-  grid-template-columns: repeat(2, 1fr);
   height: calc(100% - 60px);
   overflow: auto;
   padding: 12px 6px;
   margin-top: 12px;
+  grid-template-columns: repeat(5, 1fr);
 
   &::-webkit-scrollbar {
     display: none;
   }
 
+  @media screen and (max-width: 2000px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media screen and (max-width: 1500px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   @media screen and (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 600px) {
     grid-template-columns: repeat(1, 1fr);
-    height: 80%;
+  }
+
+  &.cheese {
+    grid-template-rows: repeat(1, 0.5fr);
   }
 
   .item {
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-    height: 400px;
     position: relative;
 
     .item-image {
@@ -88,9 +103,10 @@ const ItemWrapper = styled.div`
 
     .item-content {
       padding: 12px;
-      border-bottom-left-radius: 12px;
-      border-bottom-right-radius: 12px;
       height: 30%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
       .item-title {
         font-size: 1.2em;
@@ -98,26 +114,13 @@ const ItemWrapper = styled.div`
       }
 
       .item-description {
-        font-size: 0.9em;
+        font-size: 0.8em;
       }
 
       .item-kcal {
         font-size: 1.1em;
         color: var(--primary-yellow);
         font-weight: bold;
-      }
-    }
-
-    @media screen and (max-width: 600px) {
-      height: 320px;
-
-      .item-image {
-        height: 180px;
-        transform: scale(0.9);
-      }
-
-      .item-content {
-        height: 140px;
       }
     }
   }
@@ -171,8 +174,10 @@ export const UsageMenu = () => {
                     <Image
                       src={menu.image}
                       alt={menu.title}
-                      fill
-                      sizes="100%"
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      style={{ width: '100%', height: '100%' }}
                     />
                   </div>
                   <div className="item-content">
@@ -241,8 +246,10 @@ export const UsageBread = () => {
                     <Image
                       src={bread.image}
                       alt={bread.title}
-                      fill
-                      sizes="100%"
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      style={{ width: '100%', height: '100%' }}
                     />
                   </div>
                   <div className="item-content">
@@ -304,7 +311,7 @@ export const UsageCheese = () => {
         </div>
         { loading ?
           <Loading /> :
-          <ItemWrapper className="item-wrapper">
+          <ItemWrapper className="item-wrapper cheese">
             {
               cheeses.map((cheese: any) => (
                 <div key={cheese.id} className="item">
@@ -312,8 +319,10 @@ export const UsageCheese = () => {
                     <Image
                       src={cheese.image}
                       alt={cheese.title}
-                      fill
-                      sizes="100%"
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      style={{ width: '100%', height: '100%' }}
                     />
                   </div>
                   <div className="item-content">
@@ -380,8 +389,10 @@ export const UsageVegetable = () => {
                     <Image
                       src={vegetable.image}
                       alt={vegetable.title}
-                      fill
-                      sizes="100%"
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      style={{ width: '100%', height: '100%' }}
                     />
                   </div>
                   <div className="item-content">
@@ -447,8 +458,10 @@ export const UsageSauce = () => {
                     <Image
                       src={sauce.image}
                       alt={sauce.title}
-                      fill
-                      sizes="100%"
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      style={{ width: '100%', height: '100%' }}
                     />
                   </div>
                   <div className="item-content">
@@ -459,7 +472,7 @@ export const UsageSauce = () => {
                       { sauce.description }
                     </div>
                     <div className='item-kcal'>
-                      { sauce.kcal } kcal
+                      { sauce.kcal !== 0 ? sauce.kcal + ' kcal' : ''}
                     </div>
                   </div>
                 </div>
@@ -473,6 +486,25 @@ export const UsageSauce = () => {
 }
 
 export const UsageSet = () => {
+  const [sets, setSets] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    getSets()
+  }, [])
+
+  const getSets = async () => {
+    try {
+      const response = await fetch('/api/ingredients?type=set')
+      const data = await response.json()
+
+      setSets(data)
+      setLoading(false)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <SwiperInner>
       <div className="usage-step">
@@ -485,6 +517,38 @@ export const UsageSet = () => {
         <div>
           샌드위치만으로 부족하다면 쿠키와 음료까지!
         </div>
+        { loading ?
+          <Loading /> :  
+          <ItemWrapper className="item-wrapper">
+            {
+              sets.map((set: any) => (
+                <div key={set.id} className="item">
+                  <div className="item-image">
+                    <Image
+                      src={set.image}
+                      alt={set.title}
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      style={{ width: '100%', height: '100%' }}
+                    />
+                  </div>
+                  <div className="item-content">
+                    <div className="item-title">
+                      { set.title}
+                    </div>
+                    <div className='item-description'>
+                      { set.description }
+                    </div>
+                    <div className='item-kcal'>
+                      { set.kcal !== 0 ? set.kcal + ' kcal' : ''}
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </ItemWrapper>
+        }
       </div>
     </SwiperInner>
   )
