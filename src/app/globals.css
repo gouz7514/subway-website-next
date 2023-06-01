@@ -9,6 +9,8 @@
   
   --second-yellow: #ffE600;
 
+  --primary-green-hover: #00811f;
+
   --height-header: 80px;
 }
 
@@ -49,6 +51,10 @@ a {
 
 .d-flex {
   display: flex;
+}
+
+.d-flex.flex-column {
+  flex-direction: column;
 }
 
 .d-flex.align-items-center {
