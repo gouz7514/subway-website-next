@@ -48,5 +48,5 @@ export async function POST(request: NextRequest) {
     await prisma.$disconnect()
   }
 
-  return NextResponse.json({ message: 'OK' })
+  return NextResponse.json({ message: 'success' })
 }
