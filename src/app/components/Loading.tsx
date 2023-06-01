@@ -40,7 +40,7 @@ export default function Loading({ text = '샌드위치 준비 중' }: LoadingPro
     return () => {
       clearInterval(interval)
     }
-  }, [])
+  }, [text])
 
   return (
     <LoadingWrapper>
