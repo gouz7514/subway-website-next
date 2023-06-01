@@ -98,8 +98,8 @@ export default function PageCombination() {
         {
           loading ?
           <Loading /> :
-          combinations.map((combination: CombinationTypes) => (
-            <CombinationItem key={combination.id} combination={combination} />
+          combinations.map((combination: CombinationTypes, idx: number) => (
+            <CombinationItem key={combination.id} combination={combination} idx={idx} />
           ))
         }
       </div>

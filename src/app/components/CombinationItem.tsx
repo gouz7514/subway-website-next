@@ -106,13 +106,18 @@ const CombinationItemWrapper = styled.div`
   }
 `
 
-export default function CombinationItem({ combination }: { combination: CombinationTypes }) {
+interface CombinationItemProps {
+  combination: CombinationTypes
+  idx: number
+}
+
+export default function CombinationItem({ combination, idx }: CombinationItemProps) {
   const { menu, ingredients } = combination
 
   return (
     <CombinationItemWrapper>
       <div className="combination-id">
-        { combination.id }
+        { idx + 1 }
       </div>
       <div className="combination-content">
         <div className="combination-menu">
