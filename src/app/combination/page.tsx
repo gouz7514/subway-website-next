@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import { CombinationTypes } from '@/types/types'
 import CombinationItem from '../components/CombinationItem'
 import Loading from '../components/Loading'
+import Link from 'next/link'
 
 const CombinationWrapper = styled.div`
   display: flex;
@@ -22,7 +23,14 @@ const CombinationWrapper = styled.div`
   }
 
   .combination-description {
-    line-height: 15.em;
+    line-height: 1.5em;
+
+    .combination-form-link {
+      margin-top: 12px;
+      color: var(--primary-green);
+      font-weight: bold;
+      text-decoration: underline;
+    }
   }
 
   .combination-list {
@@ -53,7 +61,6 @@ export default function PageCombination() {
     try {
       const response = await fetch('/api/combinations')
       const data = await response.json()
-      console.log(data)
 
       setCombinations(data)
       setLoading(false)
@@ -78,6 +85,13 @@ export default function PageCombination() {
         </div>
         <div>
           이렇게 먹으면 더 맛있을지도?
+        </div>
+        <div className="combination-form-link">
+          <Link href="/combination/form">
+            <span>
+              나만의조합 추가하기 →
+            </span>
+          </Link>
         </div>
       </div>
       <div className="combination-list">
