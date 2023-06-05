@@ -13,6 +13,8 @@ import 'swiper/css/scrollbar'
 import Image from "next/image"
 
 import Loading from "@/app/components/Loading"
+import { getMenus } from "@/lib/util/getMenus"
+import { getIngredients } from "@/lib/util/getIngredients"
 
 const CombinationFormWrapper = styled.div`
   width: 100%;
@@ -252,32 +254,29 @@ export default function CombinationForm() {
   }
 
   useEffect(() => {
-    Promise.all([getMenus(), getIngredients()])
-    .catch((err) => console.log(err))
+    const fetchMenuData = async () => {
+      try {
+        const data = await getMenus()
+  
+        setMenus(data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    const fetchIngredientData = async () => {
+      try {
+        const data = await getIngredients()
+  
+        setIngredients(data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    Promise.all([fetchMenuData(), fetchIngredientData()])
+      .then(() => setLoading(false))
   }, [])
-
-  const getMenus = async () => {
-    try {
-      const res = await fetch('/api/menus')
-      const data = await res.json()
-
-      setMenus(data)
-      setLoading(false)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
-  const getIngredients = async () => {
-    try {
-      const res = await fetch('/api/ingredients')
-      const data = await res.json()
-
-      setIngredients(data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
 
   const onClickSubmit = async () => {
     setBtnLoading(true)

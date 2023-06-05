@@ -8,26 +8,25 @@ import IngredientItem from "@/app/components/IngredientItem"
 import IngredientWrapper from "@/app/components/IngredientWrapper"
 import IngredientTitle from "../components/IntredientTitle"
 import Loading from "@/app/components/Loading"
+import { getIngredients } from "@/lib/util/getIngredients"
 
 export default function PageVegetables() {
   const [vegetables, setVegetables] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getVegetables()
-  }, [])
-
-  const getVegetables = async () => {
-    try {
-      const response = await fetch('/api/ingredients?type=vegetable')
-      const data = await response.json()
-
-      setVegetables(data)
-      setLoading(false)
-    } catch (error) {
-      console.error(error)
+    const fetchVegetableData = async () => {
+      try {
+        const data = await getIngredients('vegetable')
+        setVegetables(data)
+        setLoading(false)
+      } catch (error) {
+        console.error(error)
+      }
     }
-  }
+
+    fetchVegetableData()
+  }, [])
 
   return (
     <IngredientTitle mainTitle="야채" subTitle="신선하고 다양한 써브웨이의 야채!">
