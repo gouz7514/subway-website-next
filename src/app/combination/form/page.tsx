@@ -16,6 +16,7 @@ import Loading from "@/app/components/Loading"
 
 const CombinationFormWrapper = styled.div`
   width: 100%;
+  min-height: 100%;
   margin: 12px auto;
   max-width: 1024px;
   padding: 24px;
@@ -79,6 +80,7 @@ const SwiperStyleRoot = styled.div`
     flex-direction: column;
     align-items: center;
     position: relative;
+    height: 100%;
 
     .ingredient-title {
       font-size: 16px;
@@ -177,7 +179,9 @@ export default function CombinationForm() {
   // 화면 크기에 따라 swiper slide의 갯수 조절
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 600) {
+      if (window.innerWidth <= 400) {
+        setSwiperCnt(1.5)
+      } else if (window.innerWidth < 600) {
         setSwiperCnt(2)
       } else if (window.innerWidth < 1024) {
         setSwiperCnt(3)
@@ -311,6 +315,7 @@ export default function CombinationForm() {
           나만 알고 있는 써브웨이의 조합을 추가해보세요!
         </div>
       </section>
+      {/* <Loading /> */}
       {
         loading ?
         <Loading /> :
@@ -334,8 +339,10 @@ export default function CombinationForm() {
                           <Image
                             src={menu.image}
                             alt={menu.title}
-                            width={230}
-                            height={180}
+                            width={0}
+                            height={0}
+                            sizes="100vw"
+                            style={{ width: '100%', height: '100%' }}
                           />
                           <div className="ingredient-title">
                             { menu.title }
@@ -367,8 +374,10 @@ export default function CombinationForm() {
                             <Image
                               src={ingredient.image}
                               alt={ingredient.title}
-                              width={230}
-                              height={180}
+                              width={0}
+                              height={0}
+                              sizes="100vw"
+                              style={{ width: '100%', height: '100%' }}
                             />
                             <div className="ingredient-title">
                               { ingredient.title }
@@ -400,8 +409,10 @@ export default function CombinationForm() {
                             <Image
                               src={ingredient.image}
                               alt={ingredient.title}
-                              width={220}
-                              height={160}
+                              width={0}
+                              height={0}
+                              sizes="100vw"
+                              style={{ width: '100%', height: '100%' }}
                             />
                             <div className="ingredient-title">
                               { ingredient.title }
@@ -433,8 +444,10 @@ export default function CombinationForm() {
                             <Image
                               src={ingredient.image}
                               alt={ingredient.title}
-                              width={220}
-                              height={160}
+                              width={0}
+                              height={0}
+                              sizes="100vw"
+                              style={{ width: '100%', height: '100%' }}
                             />
                             <div className="ingredient-title">
                               { ingredient.title }

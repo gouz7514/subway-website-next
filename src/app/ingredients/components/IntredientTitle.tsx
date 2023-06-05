@@ -32,7 +32,7 @@ const TitleWrapper = styled.div`
 `
 
 const DescriptionWrapper = styled.div`
-  line-height: 1.5em;
+  line-height: 1.2em;
 `
 
 type TItleProps = {
