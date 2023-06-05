@@ -16,7 +16,7 @@ NextJS, Typescript, prisma, Vercel postgres를 활용했으며 vercel을 통해 
 [![Tech stacks](https://skillicons.dev/icons?i=ts,nextjs,vercel,prisma)](https://skillicons.dev)
 
 ### Detail
-#### Style
+#### `styled-components`
 스타일링 적용을 위해 styled-components를 사용했습니다.<br />
 server component가 기본이 된 Next 13.4를 사용하게 됨에 따라 styled-components의 적용을 위해 아래와 같은 코드를 적용했습니다.
 
@@ -56,8 +56,8 @@ export default function StyledComponentsRegistry({
 
 또한, styled-components가 적용된 컴포넌트 상단에 `use-client` 를 선언했습니다.
 
-#### Database
-지난 5월 1일 (23.05.01) vercel은 storage 기능을 정식 출시했습니다. vercel에 연동된 프로젝트에 데이터베이스를 연결할 수 있는 기능으로 KV, Postgres, Blob, Edge Config 총 4가지를 지원합니다.
+#### `vercel postgres`
+지난 5월 1일 (23.05.01) [vercel은 storage 기능을 정식 출시](https://vercel.com/blog/vercel-storage)했습니다. vercel에 연동된 프로젝트에 데이터베이스를 연결할 수 있는 기능으로 KV, Postgres, Blob, Edge Config 총 4가지를 지원합니다.
 
 해당 프로젝트에는 `vercel psotgres`와 `prisma`를 사용해 데이터베이스를 구성했습니다.
 
@@ -114,3 +114,14 @@ export async function GET(req: NextRequest, res: NextResponse) {
 }
 ```
 
+api route를 호출하기 위해 `lib/util` 디렉토리 하에 아래와 같이 함수를 선언한 뒤 해당 함수가 필요한 페이지에서 호출해 사용합니다.
+```typescript
+// lib/util/getIngredients.ts
+import { cache } from 'react'
+
+export const getIngredients = cache(async (ingredient?: string) => {
+  const response = await fetch(ingredient ? `/api/ingredients?type=${ingredient}` : `/api/ingredients`)
+  const data = await response.json()
+  return data
+})
+```
