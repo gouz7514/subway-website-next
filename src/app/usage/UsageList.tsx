@@ -6,6 +6,9 @@ import Loading from '../components/Loading'
 import IngredientItem from '../components/IngredientItem'
 import IngredientWrapper from '../components/IngredientWrapper'
 
+import { getMenus } from '@/lib/util/getMenus'
+import { getIngredients } from '@/lib/util/getIngredients'
+
 const SwiperInner = styled.div`
   height: 90%;
   width: 100%;
@@ -59,20 +62,19 @@ export const UsageMenu = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getMenus()
-  }, [])
+    const fetchMenuData = async () => {
+      try {
+        const data = await getMenus()
 
-  const getMenus = async () => {
-    try {
-      const response = await fetch('/api/menus')
-      const data = await response.json()
-  
-      setMenus(data)
-      setLoading(false)
-    } catch (error) {
-      console.error(error)
+        setMenus(data)
+        setLoading(false)
+      } catch (error) {
+        console.error(error)
+      }
     }
-  }
+
+    fetchMenuData()
+  }, [])
 
   return (
     <SwiperInner>
@@ -112,20 +114,19 @@ export const UsageBread = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getBreads()
-  }, [])
+    const fetchBreadData = async () => {
+      try {
+        const data = await getIngredients('bread')
 
-  const getBreads = async () => {
-    try {
-      const response = await fetch('/api/ingredients?type=bread')
-      const data = await response.json()
-
-      setBreads(data)
-      setLoading(false)
-    } catch (error) {
-      console.error(error)
+        setBreads(data)
+        setLoading(false)
+      } catch (error) {
+        console.error(error)
+      }
     }
-  }
+
+    fetchBreadData()
+  }, [])
 
   return (
     <SwiperInner>
@@ -162,20 +163,19 @@ export const UsageCheese = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getCheeses()
-  }, [])
+    const fetchCheeseData = async () => {
+      try {
+        const data = await getIngredients('cheese')
 
-  const getCheeses = async () => {
-    try {
-      const response = await fetch('/api/ingredients?type=cheese')
-      const data = await response.json()
-
-      setCheeses(data)
-      setLoading(false)
-    } catch (error) {
-      console.error(error)
+        setCheeses(data)
+        setLoading(false)
+      } catch (error) {
+        console.error(error)
+      }
     }
-  }
+
+    fetchCheeseData()
+  }, [])
 
 
   return (
@@ -213,20 +213,19 @@ export const UsageVegetable = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getVegetables()
-  }, [])
+    const fetchVegetablesData = async () => {
+      try {
+        const data = await getIngredients('vegetable')
 
-  const getVegetables = async () => {
-    try {
-      const response = await fetch('/api/ingredients?type=vegetable')
-      const data = await response.json()
-
-      setVegetables(data)
-      setLoading(false)
-    } catch (error) {
-      console.error(error)
+        setVegetables(data)
+        setLoading(false)
+      } catch (error) {
+        console.error(error)
+      }
     }
-  }
+
+    fetchVegetablesData()
+  }, [])
 
 
   return (
@@ -261,20 +260,20 @@ export const UsageSauce = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getSauces()
-  }, [])
+    const fetchSaucesData = async () => {
+      try {
+        const data = await getIngredients('sauce')
+        
 
-  const getSauces = async () => {
-    try {
-      const response = await fetch('/api/ingredients?type=sauce')
-      const data = await response.json()
-
-      setSauces(data)
-      setLoading(false)
-    } catch (error) {
-      console.error(error)
+        setSauces(data)
+        setLoading(false)
+      } catch (error) {
+        console.error(error)
+      }
     }
-  }
+
+    fetchSaucesData()
+  }, [])
 
   return (
     <SwiperInner>
@@ -308,20 +307,20 @@ export const UsageSet = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getSets()
-  }, [])
+    const fetchSetsData = async () => {
+      try {
+        const data = await getIngredients('set')
 
-  const getSets = async () => {
-    try {
-      const response = await fetch('/api/ingredients?type=set')
-      const data = await response.json()
 
-      setSets(data)
-      setLoading(false)
-    } catch (error) {
-      console.error(error)
+        setSets(data)
+        setLoading(false)
+      } catch (error) {
+        console.error(error)
+      }
     }
-  }
+
+    fetchSetsData()
+  }, [])
 
   return (
     <SwiperInner>
