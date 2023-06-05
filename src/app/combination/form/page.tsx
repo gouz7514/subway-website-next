@@ -53,6 +53,7 @@ const SwiperStyleRoot = styled.div`
   .ingredient-slide {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     border-radius: 12px;
+    overflow: hidden;
 
     .ingredient-checked {
       display: none;
