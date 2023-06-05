@@ -31,7 +31,7 @@ const IngredientWrapperStyle = styled.div`
   }
 
   &.cheese {
-    grid-template-rows: repeat(2, 0.5fr);
+    grid-template-rows: repeat(3, 1fr);
   }
 `
 
