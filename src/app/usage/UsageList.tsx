@@ -9,25 +9,21 @@ import IngredientWrapper from '../components/IngredientWrapper'
 const SwiperInner = styled.div`
   height: 90%;
   width: 100%;
-  max-width: calc(100% - 48px);
-  margin: 24px;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  max-width: calc(100% - 24px);
   position: relative;
   display: flex;
   flex-direction: column;
 
   .usage-step {
     color: var(--primary-green);
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
   }
 
   .usage-title {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: bold;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
   }
 
   .usage-content {
@@ -44,14 +40,12 @@ const SwiperInner = styled.div`
   }
 
   @media screen and (max-width: 600px) {
-    padding: 12px;
-
     .usage-step {
-      font-size: 20px;
+      font-size: 16px;
     }
 
     .usage-title {
-      font-size: 24px;
+      font-size: 20px;
     }
 
     .usage-content {
