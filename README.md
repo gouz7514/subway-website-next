@@ -10,7 +10,7 @@ NextJS, Typescript, prisma, Vercel postgres를 활용했으며 vercel을 통해 
 - 다양한 조합을 쉽게 확인할 수 있다.
 - 누구나 원하는 조합을 추가할 수 있다.
 
-[react와 Javascript로 만든 기존의 프로젝트](https://github.com/gouz7514/subway-website)를 리팩토링함과 동시에 Next, Typescript, Vercel을 활용해 이전한 프로젝트입니다.
+[react와 Javascript로 만든 기존의 프로젝트](https://github.com/gouz7514/subway-website)를 Next, Typescript, Vercel을 활용해 리팩토링 및 발전시킨 서비스입니다.
 
 ### Stack
 [![Tech stacks](https://skillicons.dev/icons?i=ts,nextjs,vercel,prisma)](https://skillicons.dev)
