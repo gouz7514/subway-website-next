@@ -38,6 +38,8 @@ const CombinationWrapper = styled.div`
     display: grid;
     gap: 12px;
     grid-template-columns: repeat(2, 1fr);
+    position: relative;
+    min-height: 300px;
 
     @media screen and (max-width: 1024px) {
       grid-template-columns: repeat(1, 1fr);

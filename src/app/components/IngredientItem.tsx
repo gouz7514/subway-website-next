@@ -20,7 +20,6 @@ const IngredientItemWrapper = styled.div`
       height: 30%;
       display: flex;
       flex-direction: column;
-      // justify-content: space-between;
 
       .item-title {
         font-size: 1.1em;

@@ -20,6 +20,10 @@ const Intro = styled.div`
     @media screen and (max-width: 1024px) {
       font-size: 1.5em;
     }
+
+    @media screen and (max-width: 600px) {
+      font-size: 1.2em;
+    }
   }
 
   .intro-list {
