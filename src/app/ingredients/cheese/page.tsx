@@ -8,29 +8,30 @@ import IngredientItem from "@/app/components/IngredientItem"
 import IngredientWrapper from "@/app/components/IngredientWrapper"
 import IngredientTitle from "../components/IntredientTitle"
 import Loading from "@/app/components/Loading"
+
 import { getIngredients } from "@/lib/util/getIngredients"
+import { useQuery } from "@tanstack/react-query"
 
 export default function PageCheese() {
   const [cheeses, setCheeses] = useState([])
-  const [loading, setLoading] = useState(true)
+
+  const { data: ingredientData, isLoading } = useQuery({
+    queryKey: ['ingredients'],
+    queryFn: getIngredients,
+    staleTime: Infinity,
+    cacheTime: 1000 * 60 * 5
+  })
 
   useEffect(() => {
-    const fetchCheeseData = async () => {
-      try {
-        const data = await getIngredients('cheese')
-        setCheeses(data)
-        setLoading(false)
-      } catch (error) {
-        console.error(error)
-      }
+    if (ingredientData) {
+      const data = ingredientData.filter((ingredient: IngredientTypes) => ingredient.type === 'cheese')
+      setCheeses(data)
     }
-
-    fetchCheeseData()
-  }, [])
+  }, [ingredientData])
 
   return (
     <IngredientTitle mainTitle="치즈" subTitle="3가지 치즈 중 입맛대로 골라보세요!">
-      { loading ? 
+      { isLoading ? 
         <Loading /> :
         <IngredientWrapper>
           {

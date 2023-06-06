@@ -5,6 +5,7 @@ import StyledComponentsRegistry from '@/lib/registry'
 import GlobalHeader from '@/lib/globalHeader'
 
 import Header from './components/Header'
+import ReactQueryProvider from './ReactQueryProvider'
 
 export default function RootLayout({
   children,
@@ -20,12 +21,14 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
-        <GlobalHeader>
-          <Header />
-        </GlobalHeader>
-        <StyledComponentsRegistry>
-          { children }
-        </StyledComponentsRegistry>
+        <ReactQueryProvider>
+          <GlobalHeader>
+            <Header />
+          </GlobalHeader>
+          <StyledComponentsRegistry>
+            { children }
+          </StyledComponentsRegistry>
+        </ReactQueryProvider>
       </body>
     </html>
   )

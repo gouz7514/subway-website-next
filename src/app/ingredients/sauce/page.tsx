@@ -8,29 +8,30 @@ import IngredientItem from "@/app/components/IngredientItem"
 import IngredientWrapper from "@/app/components/IngredientWrapper"
 import IngredientTitle from "../components/IntredientTitle"
 import Loading from "@/app/components/Loading"
+
 import { getIngredients } from "@/lib/util/getIngredients"
+import { useQuery } from "@tanstack/react-query"
 
 export default function PageSauce() {
   const [sauces, setSauces] = useState([])
-  const [loading, setLoading] = useState(true)
+
+  const { data: ingredientData, isLoading } = useQuery({
+    queryKey: ['ingredients'],
+    queryFn: getIngredients,
+    staleTime: Infinity,
+    cacheTime: 1000 * 60 * 5
+  })
 
   useEffect(() => {
-    const fetchSauceData = async () => {
-      try {
-        const data = await getIngredients('sauce')
-        setSauces(data)
-        setLoading(false)
-      } catch (error) {
-        console.error(error)
-      }
+    if (ingredientData) {
+      const data = ingredientData.filter((ingredient: IngredientTypes) => ingredient.type === 'sauce')
+      setSauces(data)
     }
-
-    fetchSauceData()
-  }, [])
+  }, [ingredientData])
 
   return (
     <IngredientTitle mainTitle="소스" subTitle="뭘 먹어야할지 모르겠다면 '추천해주세요!'">
-      { loading ? 
+      { isLoading ? 
         <Loading /> :
         <IngredientWrapper>
           {

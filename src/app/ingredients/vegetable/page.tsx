@@ -8,29 +8,30 @@ import IngredientItem from "@/app/components/IngredientItem"
 import IngredientWrapper from "@/app/components/IngredientWrapper"
 import IngredientTitle from "../components/IntredientTitle"
 import Loading from "@/app/components/Loading"
+
 import { getIngredients } from "@/lib/util/getIngredients"
+import { useQuery } from "@tanstack/react-query"
 
 export default function PageVegetables() {
   const [vegetables, setVegetables] = useState([])
-  const [loading, setLoading] = useState(true)
+  
+  const { data: ingredientData, isLoading } = useQuery({
+    queryKey: ['ingredients'],
+    queryFn: getIngredients,
+    staleTime: Infinity,
+    cacheTime: 1000 * 60 * 5
+  })
 
   useEffect(() => {
-    const fetchVegetableData = async () => {
-      try {
-        const data = await getIngredients('vegetable')
-        setVegetables(data)
-        setLoading(false)
-      } catch (error) {
-        console.error(error)
-      }
+    if (ingredientData) {
+      const data = ingredientData.filter((ingredient: IngredientTypes) => ingredient.type === 'vegetable')
+      setVegetables(data)
     }
-
-    fetchVegetableData()
-  }, [])
+  }, [ingredientData])
 
   return (
     <IngredientTitle mainTitle="야채" subTitle="신선하고 다양한 써브웨이의 야채!">
-      { loading ? 
+      { isLoading ? 
         <Loading /> :
         <IngredientWrapper>
           {
