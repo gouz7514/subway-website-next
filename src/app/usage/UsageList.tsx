@@ -2,12 +2,12 @@ import styled from 'styled-components'
 import { useState, useEffect } from 'react'
 
 import { IngredientTypes } from '@/types/types'
-import Loading from '../components/Loading'
-import IngredientItem from '../components/IngredientItem'
-import IngredientWrapper from '../components/IngredientWrapper'
+import IngredientItem from '@/app/components/IngredientItem'
+import Loading from '@/app/components/Loading'
+import IngredientWrapper from '@/app/components/IngredientWrapper'
 
-import { getMenus } from '@/lib/util/getMenus'
-import { getIngredients } from '@/lib/util/getIngredients'
+import { getMenus, getIngredients } from '@/lib/util/api'
+import { useQuery } from '@tanstack/react-query'
 
 const SwiperInner = styled.div`
   height: 90%;
@@ -59,22 +59,19 @@ const SwiperInner = styled.div`
 
 export const UsageMenu = () => {
   const [menus, setMenus] = useState([])
-  const [loading, setLoading] = useState(true)
+
+  const { data: menuData, isLoading } = useQuery({
+    queryKey: ['menus'],
+    queryFn: getMenus,
+    staleTime: Infinity,
+    cacheTime: 1000 * 60 * 5
+  })
 
   useEffect(() => {
-    const fetchMenuData = async () => {
-      try {
-        const data = await getMenus()
-
-        setMenus(data)
-        setLoading(false)
-      } catch (error) {
-        console.error(error)
-      }
+    if (menuData) {
+      setMenus(menuData)
     }
-
-    fetchMenuData()
-  }, [])
+  }, [menuData])
 
   return (
     <SwiperInner>
@@ -94,7 +91,7 @@ export const UsageMenu = () => {
         <div>
           샐러드 중 선택 가능합니다.
         </div>
-        { loading ?
+        { isLoading ?
           <Loading /> :
           <IngredientWrapper>
             {
@@ -111,22 +108,20 @@ export const UsageMenu = () => {
 
 export const UsageBread = () => {
   const [breads, setBreads] = useState([])
-  const [loading, setLoading] = useState(true)
+
+  const { data: ingredientData, isLoading } = useQuery({
+    queryKey: ['ingredients'],
+    queryFn: getIngredients,
+    staleTime: Infinity,
+    cacheTime: 1000 * 60 * 5
+  })
 
   useEffect(() => {
-    const fetchBreadData = async () => {
-      try {
-        const data = await getIngredients('bread')
-
-        setBreads(data)
-        setLoading(false)
-      } catch (error) {
-        console.error(error)
-      }
+    if (ingredientData) {
+      const data = ingredientData.filter((ingredient: IngredientTypes) => ingredient.type === 'bread')
+      setBreads(data)
     }
-
-    fetchBreadData()
-  }, [])
+  }, [ingredientData])
 
   return (
     <SwiperInner>
@@ -143,7 +138,7 @@ export const UsageBread = () => {
         <div>
           추가비용 없이 6가지 빵 중 선택 가능합니다.
         </div>
-        { loading ? 
+        { isLoading ? 
           <Loading /> :
           <IngredientWrapper>
             {
@@ -160,23 +155,20 @@ export const UsageBread = () => {
 
 export const UsageCheese = () => {
   const [cheeses, setCheeses] = useState([])
-  const [loading, setLoading] = useState(true)
+
+  const { data: ingredientData, isLoading } = useQuery({
+    queryKey: ['ingredients'],
+    queryFn: getIngredients,
+    staleTime: Infinity,
+    cacheTime: 1000 * 60 * 5
+  })
 
   useEffect(() => {
-    const fetchCheeseData = async () => {
-      try {
-        const data = await getIngredients('cheese')
-
-        setCheeses(data)
-        setLoading(false)
-      } catch (error) {
-        console.error(error)
-      }
+    if (ingredientData) {
+      const data = ingredientData.filter((ingredient: IngredientTypes) => ingredient.type === 'cheese')
+      setCheeses(data)
     }
-
-    fetchCheeseData()
-  }, [])
-
+  }, [ingredientData])
 
   return (
     <SwiperInner>
@@ -193,7 +185,7 @@ export const UsageCheese = () => {
         <div className="usage-content-extra">
           (추가 시 : 15cm : 1,400원 / 30cm : 2,800원)
         </div>
-        { loading ?
+        { isLoading ?
           <Loading /> :
           <IngredientWrapper extraClass='cheese'>
             {
@@ -210,23 +202,20 @@ export const UsageCheese = () => {
 
 export const UsageVegetable = () => {
   const [vegetables, setVegetables] = useState([])
-  const [loading, setLoading] = useState(true)
+
+  const { data: ingredientData, isLoading } = useQuery({
+    queryKey: ['ingredients'],
+    queryFn: getIngredients,
+    staleTime: Infinity,
+    cacheTime: 1000 * 60 * 5
+  })
 
   useEffect(() => {
-    const fetchVegetablesData = async () => {
-      try {
-        const data = await getIngredients('vegetable')
-
-        setVegetables(data)
-        setLoading(false)
-      } catch (error) {
-        console.error(error)
-      }
+    if (ingredientData) {
+      const data = ingredientData.filter((ingredient: IngredientTypes) => ingredient.type === 'vegetable')
+      setVegetables(data)
     }
-
-    fetchVegetablesData()
-  }, [])
-
+  }, [ingredientData])
 
   return (
     <SwiperInner>
@@ -240,7 +229,7 @@ export const UsageVegetable = () => {
         <div>
           원하지 않는 채소는 빼고, 원하는 채소는 더해보세요!
         </div>
-        { loading ?
+        { isLoading ?
           <Loading /> :  
           <IngredientWrapper>
             {
@@ -257,23 +246,20 @@ export const UsageVegetable = () => {
 
 export const UsageSauce = () => {
   const [sauces, setSauces] = useState([])
-  const [loading, setLoading] = useState(true)
+  
+  const { data: ingredientData, isLoading } = useQuery({
+    queryKey: ['ingredients'],
+    queryFn: getIngredients,
+    staleTime: Infinity,
+    cacheTime: 1000 * 60 * 5
+  })
 
   useEffect(() => {
-    const fetchSaucesData = async () => {
-      try {
-        const data = await getIngredients('sauce')
-        
-
-        setSauces(data)
-        setLoading(false)
-      } catch (error) {
-        console.error(error)
-      }
+    if (ingredientData) {
+      const data = ingredientData.filter((ingredient: IngredientTypes) => ingredient.type === 'sauce')
+      setSauces(data)
     }
-
-    fetchSaucesData()
-  }, [])
+  }, [ingredientData])
 
   return (
     <SwiperInner>
@@ -287,7 +273,7 @@ export const UsageSauce = () => {
         <div>
           가격 차이 없이 원하는 소스를 마음껏 선택하세요!
         </div>
-        { loading ?
+        { isLoading ?
           <Loading /> :
           <IngredientWrapper>
             {
@@ -304,23 +290,20 @@ export const UsageSauce = () => {
 
 export const UsageSet = () => {
   const [sets, setSets] = useState([])
-  const [loading, setLoading] = useState(true)
+  
+  const { data: ingredientData, isLoading } = useQuery({
+    queryKey: ['ingredients'],
+    queryFn: getIngredients,
+    staleTime: Infinity,
+    cacheTime: 1000 * 60 * 5
+  })
 
   useEffect(() => {
-    const fetchSetsData = async () => {
-      try {
-        const data = await getIngredients('set')
-
-
-        setSets(data)
-        setLoading(false)
-      } catch (error) {
-        console.error(error)
-      }
+    if (ingredientData) {
+      const data = ingredientData.filter((ingredient: IngredientTypes) => ingredient.type === 'sauce')
+      setSets(data)
     }
-
-    fetchSetsData()
-  }, [])
+  }, [ingredientData])
 
   return (
     <SwiperInner>
@@ -334,7 +317,7 @@ export const UsageSet = () => {
         <div>
           샌드위치만으로 부족하다면 쿠키와 음료까지!
         </div>
-        { loading ?
+        { isLoading ?
           <Loading /> :  
           <IngredientWrapper>
             {

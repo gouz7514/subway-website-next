@@ -13,8 +13,10 @@ import 'swiper/css/scrollbar'
 import Image from "next/image"
 
 import Loading from "@/app/components/Loading"
-import { getMenus } from "@/lib/util/getMenus"
-import { getIngredients } from "@/lib/util/getIngredients"
+import { getMenus, getIngredients } from "@/lib/util/api"
+import { useQuery, QueryClient } from "@tanstack/react-query"
+
+const queryClient = new QueryClient()
 
 const CombinationFormWrapper = styled.div`
   width: 100%;
@@ -253,30 +255,27 @@ export default function CombinationForm() {
     }
   }
 
+  const { data: menuData, isLoading: menuLoading } = useQuery({
+    queryKey: ['menus'],
+    queryFn: getMenus,
+    staleTime: Infinity,
+    cacheTime: 1000 * 60 * 5
+  })
+
+  const { data: ingredientData, isLoading: ingredientLoading } = useQuery({
+    queryKey: ['ingredients'],
+    queryFn: getIngredients,
+    staleTime: Infinity,
+    cacheTime: 1000 * 60 * 5
+  })
+
   useEffect(() => {
-    const fetchMenuData = async () => {
-      try {
-        const data = await getMenus()
-  
-        setMenus(data)
-      } catch (err) {
-        console.log(err)
-      }
+    if (menuData && ingredientData) {
+      setMenus(menuData)
+      setIngredients(ingredientData)
+      setLoading(false)
     }
-
-    const fetchIngredientData = async () => {
-      try {
-        const data = await getIngredients()
-  
-        setIngredients(data)
-      } catch (err) {
-        console.log(err)
-      }
-    }
-
-    Promise.all([fetchMenuData(), fetchIngredientData()])
-      .then(() => setLoading(false))
-  }, [])
+  }, [menuData, ingredientData])
 
   const onClickSubmit = async () => {
     setBtnLoading(true)
@@ -294,6 +293,10 @@ export default function CombinationForm() {
       })
       const data = await res.json()
       if (data.message === 'success') {
+        queryClient.invalidateQueries({
+          queryKey: ['combinations']
+        })
+
         setBtnLoading(false)
         alert('조합이 추가되었습니다!')
         location.href = '/combination'
@@ -313,7 +316,6 @@ export default function CombinationForm() {
           나만 알고 있는 써브웨이의 조합을 추가해보세요!
         </div>
       </section>
-      {/* <Loading /> */}
       {
         loading ?
         <Loading /> :

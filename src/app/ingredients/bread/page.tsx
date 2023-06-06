@@ -6,31 +6,33 @@ import { IngredientTypes } from "@/types/types"
 
 import IngredientItem from "@/app/components/IngredientItem"
 import IngredientWrapper from "@/app/components/IngredientWrapper"
-import IngredientTitle from "../components/IntredientTitle"
 import Loading from "@/app/components/Loading"
-import { getIngredients } from "@/lib/util/getIngredients"
+
+import IngredientTitle from "../components/IngredientTitle"
+
+import { getIngredients } from "@/lib/util/api"
+import { useQuery } from '@tanstack/react-query'
 
 export default function PageBread() {
   const [breads, setBreads] = useState([])
-  const [loading, setLoading] = useState(true)
+
+  const { data: ingredientData, isLoading } = useQuery({
+    queryKey: ['ingredients'],
+    queryFn: getIngredients,
+    staleTime: Infinity,
+    cacheTime: 1000 * 60 * 5
+  })
 
   useEffect(() => {
-    const fetchBreadData = async () => {
-      try {
-        const data = await getIngredients('bread')
-        setBreads(data)
-        setLoading(false)
-      } catch (error) {
-        console.error(error)
-      }
+    if (ingredientData) {
+      const data = ingredientData.filter((ingredient: IngredientTypes) => ingredient.type === 'bread')
+      setBreads(data)
     }
-
-    fetchBreadData()
-  }, [])
+  }, [ingredientData])
 
   return (
     <IngredientTitle mainTitle="빵" subTitle="매장에서 직접 구운 6가지 빵을 소개합니다">
-      { loading ? 
+      { isLoading ? 
         <Loading /> :
         <IngredientWrapper>
           {

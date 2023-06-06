@@ -138,7 +138,12 @@ export default function CombinationItem({ combination, idx }: CombinationItemPro
         <div className="combination-ingredients">
           <div className="combination-ingredients-primary">
             {
-              ingredients.filter((ingredient: IngredientTypes) => ingredient.type !== 'sauce')
+              ingredients
+                .filter((ingredient: IngredientTypes) => ingredient.type !== 'sauce')
+                .sort((a: IngredientTypes, b: IngredientTypes) => {
+                  const order = ['bread', 'cheese']
+                  return order.indexOf(a.type) - order.indexOf(b.type)
+                })
                 .map((ingredient: IngredientTypes) => (
                   <div key={ingredient.id} className='ingredient-item'>
                     <div className="ingredient-image">

@@ -20,6 +20,5 @@ export async function GET(req: NextRequest, res: NextResponse) {
     ingredients = await prisma.ingredient.findMany()
   }
 
-
   return NextResponse.json(ingredients)
 }
