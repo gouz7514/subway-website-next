@@ -14,7 +14,9 @@ import Image from "next/image"
 
 import Loading from "@/app/components/Loading"
 import { getMenus, getIngredients } from "@/lib/util/api"
-import { useQuery } from "@tanstack/react-query"
+import { useQuery, QueryClient } from "@tanstack/react-query"
+
+const queryClient = new QueryClient()
 
 const CombinationFormWrapper = styled.div`
   width: 100%;
@@ -291,6 +293,10 @@ export default function CombinationForm() {
       })
       const data = await res.json()
       if (data.message === 'success') {
+        queryClient.invalidateQueries({
+          queryKey: ['combinations']
+        })
+
         setBtnLoading(false)
         alert('조합이 추가되었습니다!')
         location.href = '/combination'
