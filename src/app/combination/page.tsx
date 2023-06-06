@@ -7,6 +7,9 @@ import CombinationItem from '../components/CombinationItem'
 import Loading from '../components/Loading'
 import Link from 'next/link'
 
+import { getCombinations } from '@/lib/util/api'
+import { useQuery } from '@tanstack/react-query'
+
 const CombinationWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -53,23 +56,19 @@ const CombinationWrapper = styled.div`
 
 export default function PageCombination() {
   const [combinations, setCombinations] = useState([])
-  const [loading, setLoading] = useState(true)
+
+  const { data: combinationData, isLoading } = useQuery({
+    queryKey: ['combinations'],
+    queryFn: getCombinations,
+    staleTime: Infinity,
+    cacheTime: 1000 * 60 * 5
+  })
 
   useEffect(() => {
-    getCombinations()
-  }, [])
-
-  const getCombinations = async () => {
-    try {
-      const response = await fetch('/api/combinations')
-      const data = await response.json()
-
-      setCombinations(data)
-      setLoading(false)
-    } catch (error) {
-      console.error(error)
+    if (combinationData) {
+      setCombinations(combinationData)
     }
-  }
+  }, [combinationData])
 
   return (
     <CombinationWrapper>
@@ -98,7 +97,7 @@ export default function PageCombination() {
       </div>
       <div className="combination-list">
         {
-          loading ?
+          isLoading ?
           <Loading /> :
           combinations.map((combination: CombinationTypes, idx: number) => (
             <CombinationItem key={combination.id} combination={combination} idx={idx} />
