@@ -13,8 +13,7 @@ import 'swiper/css/scrollbar'
 import Image from "next/image"
 
 import Loading from "@/app/components/Loading"
-import { getMenus } from "@/lib/util/getMenus"
-import { getIngredients } from "@/lib/util/getIngredients"
+import { getMenus, getIngredients } from "@/lib/util/api"
 
 const CombinationFormWrapper = styled.div`
   width: 100%;

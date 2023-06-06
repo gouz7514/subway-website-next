@@ -6,8 +6,7 @@ import Loading from '../components/Loading'
 import IngredientItem from '../components/IngredientItem'
 import IngredientWrapper from '../components/IngredientWrapper'
 
-import { getMenus } from '@/lib/util/getMenus'
-import { getIngredients } from '@/lib/util/getIngredients'
+import { getMenus, getIngredients } from '@/lib/util/api'
 import { useQuery } from '@tanstack/react-query'
 
 const SwiperInner = styled.div`

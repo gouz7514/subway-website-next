@@ -9,7 +9,7 @@ import IngredientWrapper from "@/app/components/IngredientWrapper"
 import IngredientTitle from "../components/IntredientTitle"
 import Loading from "@/app/components/Loading"
 
-import { getIngredients } from "@/lib/util/getIngredients"
+import { getIngredients } from "@/lib/util/api"
 import { useQuery } from "@tanstack/react-query"
 
 export default function PageCheese() {
