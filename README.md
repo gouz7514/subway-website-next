@@ -114,14 +114,54 @@ export async function GET(req: NextRequest, res: NextResponse) {
 }
 ```
 
-api route를 호출하기 위해 `lib/util` 디렉토리 하에 아래와 같이 함수를 선언한 뒤 해당 함수가 필요한 페이지에서 호출해 사용합니다.
-```typescript
-// lib/util/getIngredients.ts
-import { cache } from 'react'
+api route를 호출하기 위해 `lib/util` 디렉토리 하에 `api.ts` 를 사용합니다.
 
-export const getIngredients = cache(async (ingredient?: string) => {
-  const response = await fetch(ingredient ? `/api/ingredients?type=${ingredient}` : `/api/ingredients`)
+```typescript
+// lib/util/api.ts
+export const getMenus = async () => {
+  const response = await fetch('/api/menus')
   const data = await response.json()
   return data
-})
+}
+
+export const getIngredients = async () => {
+  const response = await fetch('/api/ingredients')
+  const data = await response.json()
+  return data
+}
+
+export const getCombinations = async () => {
+  const response = await fetch('/api/combinations')
+  const data = await response.json()
+  return data
+}
+```
+
+#### `react-query`
+자주 사용하는 api 요청에 react-query를 사용했습니다.
+
+```typescript
+// app/usage/UsageList.tsx
+import { getMenus, getIngredients } from '@/lib/util/api'
+import { useQuery } from '@tanstack/react-query'
+
+export const UsageMenu = () => {
+  const [menus, setMenus] = useState([])
+
+  const { data: menuData, isLoading } = useQuery({
+    queryKey: ['menus'],
+    queryFn: getMenus,
+    staleTime: 1000 * 60 * 5,
+  })
+
+  useEffect(() => {
+    if (menuData) {
+      setMenus(menuData)
+    }
+  }, [menuData])
+
+  return (
+    ...
+  )
+}
 ```
