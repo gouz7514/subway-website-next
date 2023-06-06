@@ -63,8 +63,7 @@ export const UsageMenu = () => {
   const { data: menuData, isLoading } = useQuery({
     queryKey: ['menus'],
     queryFn: getMenus,
-    staleTime: Infinity,
-    cacheTime: 1000 * 60 * 5
+    staleTime: 1000 * 60 * 5
   })
 
   useEffect(() => {
@@ -112,8 +111,7 @@ export const UsageBread = () => {
   const { data: ingredientData, isLoading } = useQuery({
     queryKey: ['ingredients'],
     queryFn: getIngredients,
-    staleTime: Infinity,
-    cacheTime: 1000 * 60 * 5
+    staleTime: 1000 * 60 * 5
   })
 
   useEffect(() => {
@@ -159,8 +157,7 @@ export const UsageCheese = () => {
   const { data: ingredientData, isLoading } = useQuery({
     queryKey: ['ingredients'],
     queryFn: getIngredients,
-    staleTime: Infinity,
-    cacheTime: 1000 * 60 * 5
+    staleTime: 1000 * 60 * 5
   })
 
   useEffect(() => {
@@ -206,8 +203,7 @@ export const UsageVegetable = () => {
   const { data: ingredientData, isLoading } = useQuery({
     queryKey: ['ingredients'],
     queryFn: getIngredients,
-    staleTime: Infinity,
-    cacheTime: 1000 * 60 * 5
+    staleTime: 1000 * 60 * 5
   })
 
   useEffect(() => {
@@ -250,8 +246,7 @@ export const UsageSauce = () => {
   const { data: ingredientData, isLoading } = useQuery({
     queryKey: ['ingredients'],
     queryFn: getIngredients,
-    staleTime: Infinity,
-    cacheTime: 1000 * 60 * 5
+    staleTime: 1000 * 60 * 5
   })
 
   useEffect(() => {
@@ -294,8 +289,7 @@ export const UsageSet = () => {
   const { data: ingredientData, isLoading } = useQuery({
     queryKey: ['ingredients'],
     queryFn: getIngredients,
-    staleTime: Infinity,
-    cacheTime: 1000 * 60 * 5
+    staleTime: 1000 * 60 * 5
   })
 
   useEffect(() => {

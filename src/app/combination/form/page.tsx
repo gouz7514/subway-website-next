@@ -258,15 +258,13 @@ export default function CombinationForm() {
   const { data: menuData, isLoading: menuLoading } = useQuery({
     queryKey: ['menus'],
     queryFn: getMenus,
-    staleTime: Infinity,
-    cacheTime: 1000 * 60 * 5
+    staleTime: 1000 * 60 * 5
   })
 
   const { data: ingredientData, isLoading: ingredientLoading } = useQuery({
     queryKey: ['ingredients'],
     queryFn: getIngredients,
-    staleTime: Infinity,
-    cacheTime: 1000 * 60 * 5
+    staleTime: 1000 * 60 * 5
   })
 
   useEffect(() => {

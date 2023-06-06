@@ -19,8 +19,7 @@ export default function PageCheese() {
   const { data: ingredientData, isLoading } = useQuery({
     queryKey: ['ingredients'],
     queryFn: getIngredients,
-    staleTime: Infinity,
-    cacheTime: 1000 * 60 * 5
+    staleTime: 1000 * 60 * 5
   })
 
   useEffect(() => {

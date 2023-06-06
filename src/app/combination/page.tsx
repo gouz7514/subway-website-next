@@ -60,8 +60,7 @@ export default function PageCombination() {
   const { data: combinationData, isLoading } = useQuery({
     queryKey: ['combinations'],
     queryFn: getCombinations,
-    staleTime: Infinity,
-    cacheTime: 1000 * 60 * 5
+    staleTime: 1000 * 60 * 5
   })
 
   useEffect(() => {
