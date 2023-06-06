@@ -2,9 +2,9 @@ import styled from 'styled-components'
 import { useState, useEffect } from 'react'
 
 import { IngredientTypes } from '@/types/types'
-import Loading from '../components/Loading'
-import IngredientItem from '../components/IngredientItem'
-import IngredientWrapper from '../components/IngredientWrapper'
+import IngredientItem from '@/app/components/IngredientItem'
+import Loading from '@/app/components/Loading'
+import IngredientWrapper from '@/app/components/IngredientWrapper'
 
 import { getMenus, getIngredients } from '@/lib/util/api'
 import { useQuery } from '@tanstack/react-query'

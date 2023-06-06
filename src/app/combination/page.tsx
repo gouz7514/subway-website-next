@@ -3,8 +3,8 @@
 import styled from 'styled-components'
 import { useState, useEffect } from "react"
 import { CombinationTypes } from '@/types/types'
-import CombinationItem from '../components/CombinationItem'
-import Loading from '../components/Loading'
+import CombinationItem from '@/app/components/CombinationItem'
+import Loading from '@/app/components/Loading'
 import Link from 'next/link'
 
 import { getCombinations } from '@/lib/util/api'

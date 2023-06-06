@@ -6,8 +6,9 @@ import { IngredientTypes } from "@/types/types"
 
 import IngredientItem from "@/app/components/IngredientItem"
 import IngredientWrapper from "@/app/components/IngredientWrapper"
-import IngredientTitle from "../components/IntredientTitle"
 import Loading from "@/app/components/Loading"
+
+import IngredientTitle from "../components/IngredientTitle"
 
 import { getIngredients } from "@/lib/util/api"
 import { useQuery } from "@tanstack/react-query"
