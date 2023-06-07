@@ -22,7 +22,7 @@ export default function RootLayout({
         <meta property="og:type" content="website" />
         <meta property="og:title" content="SubHow - 쉽게 즐기는 써브웨이" />
         <meta property="og:description" content="SubHow와 함께 써브웨이를 즐기세요!" />
-        <meta property="og:image" content="https://subway-website-next.vercel.app/icon/logo_subhow.png" />
+        <meta property="og:image" content="https://subway-website-next.vercel.app/image/logo_og_image.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
