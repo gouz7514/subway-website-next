@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>SubHow</title>
+        <title>SubHow - 쉽게 즐기는 써브웨이</title>
         <meta charSet="utf-8" />
         <meta name="title" content="SubHow - 쉽게 즐기는 써브웨이" />
         <meta name="description" content="SubHow와 함께 써브웨이를 즐기세요!" />
