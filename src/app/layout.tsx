@@ -17,7 +17,12 @@ export default function RootLayout({
       <head>
         <title>SubHow</title>
         <meta charSet="utf-8" />
-        <meta name="description" content="Next와 Typescript로 만드는 subway 가이드" />
+        <meta name="title" content="SubHow - 쉽게 즐기는 써브웨이" />
+        <meta name="description" content="SubHow와 함께 써브웨이를 즐기세요!" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="SubHow - 쉽게 즐기는 써브웨이" />
+        <meta property="og:description" content="SubHow와 함께 써브웨이를 즐기세요!" />
+        <meta property="og:image" content="/logo_subhow.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
