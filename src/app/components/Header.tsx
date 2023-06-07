@@ -23,7 +23,7 @@ const HeaderStyle = styled.header`
 
     .header-home {
       margin-right: auto;
-      background-image: url('/icon/logo_subhow.svg');
+      background-image: url('/icon/logo_subhow.png');
       width: 120px;
       height: 30px;
       background-repeat: no-repeat;
