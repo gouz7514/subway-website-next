@@ -43,7 +43,7 @@ type IngredientWrapperProps = {
 
 export default function IngredientWrapper({ children, extraClass }: IngredientWrapperProps) {
   return (
-    <IngredientWrapperStyle className={ `${extraClass} ingredient-wrapper-style` }>
+    <IngredientWrapperStyle className={ extraClass }>
       {children}
     </IngredientWrapperStyle>
   )
