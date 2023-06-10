@@ -20,30 +20,29 @@ import {
 
 SwiperCore.use([Pagination])
 
-const SwiperStyleRot = styled.div`
+const SwiperStyleRoot = styled.div`
   --swiper-theme-color: var(--primary-yellow);
   margin: auto;
-  // max-width: 1024px;
 
   .swiper-slide {
     display: flex;
     justify-content: center;
   }
-
-  // @media screen and (min-width: 1024px) {
-  //   max-width: 900px;
-  // }
-
-  // @media screen and (max-width: 1024px) {
-  //   max-width: 600px;
-  // }
 `
 
 export default function Usage() {
+  const slideContents: React.ReactNode[] = [
+    <UsageMenu key="menu" />,
+    <UsageBread key="bread" />,
+    <UsageCheese key="cheese" />,
+    <UsageVegetable key="vegetable" />,
+    <UsageSauce key="sauce" />,
+    <UsageSet key="set" />
+  ]
 
   return (
     <>
-      <SwiperStyleRot>
+      <SwiperStyleRoot>
         <Swiper
           modules={[Pagination]}
           spaceBetween={12}
@@ -52,26 +51,15 @@ export default function Usage() {
           onSwiper={(swiper) => console.log(swiper)}
           pagination={{ clickable: true }}
         >
-          <SwiperSlide>
-            <UsageMenu />
-          </SwiperSlide>
-          <SwiperSlide>
-            <UsageBread />
-          </SwiperSlide>
-          <SwiperSlide>
-            <UsageCheese />
-          </SwiperSlide>
-          <SwiperSlide>
-            <UsageVegetable />
-          </SwiperSlide>
-          <SwiperSlide>
-            <UsageSauce />
-          </SwiperSlide>
-          <SwiperSlide>
-            <UsageSet />
-          </SwiperSlide>
+          {
+            slideContents.map((content, index) => (
+              <SwiperSlide key={index}>
+                {content}
+              </SwiperSlide>
+            ))
+          }
         </Swiper>
-      </SwiperStyleRot>
+      </SwiperStyleRoot>
     </>
   )
 }

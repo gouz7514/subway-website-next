@@ -5,10 +5,11 @@ const IngredientWrapperStyle = styled.div`
   display: grid;
   gap: 12px;
   height: calc(100% - 60px);
-  overflow: auto;
+  overflow-y: scroll;
   padding: 12px 6px;
   margin-top: 12px;
   grid-template-columns: repeat(5, 1fr);
+  touch-action: pan-y;
 
   &::-webkit-scrollbar {
     display: none;
