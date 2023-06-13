@@ -89,7 +89,7 @@ export default function PageCombination() {
         <div className="combination-form-link">
           <Link href="/combination/form">
             <span>
-              나만의조합 추가하기 →
+              나만의 조합 추가하기 →
             </span>
           </Link>
         </div>
