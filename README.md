@@ -13,7 +13,7 @@ NextJS, Typescript, prisma, Vercel postgres를 활용했으며 vercel을 통해 
 [react와 Javascript로 만든 기존의 프로젝트](https://github.com/gouz7514/subway-website)를 Next, Typescript, Vercel을 활용해 리팩토링 및 발전시킨 서비스입니다.
 
 ### Stack
-[![Tech stacks](https://skillicons.dev/icons?i=ts,nextjs,vercel,prisma)](https://skillicons.dev)
+[![Tech stacks](https://skillicons.dev/icons?i=ts,nextjs,vercel,prisma,jest)](https://skillicons.dev)
 
 ### Detail
 #### `styled-components`
@@ -165,3 +165,6 @@ export const UsageMenu = () => {
   )
 }
 ```
+
+### `jest`
+jest를 사용해 테스트 환경을 구축했습니다.
