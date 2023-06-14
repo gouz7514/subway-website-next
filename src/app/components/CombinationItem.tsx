@@ -122,7 +122,7 @@ export default function CombinationItem({ combination, idx }: CombinationItemPro
       <div className="combination-content">
         <div className="combination-menu">
           <div className="combination-menu-image">
-            { menu && menu.image && menu.title && (
+            { menu && (
               <Image
                 src={menu.image}
                 alt={menu.title}
@@ -135,9 +135,7 @@ export default function CombinationItem({ combination, idx }: CombinationItemPro
           </div>
           <div className="combination-menu-title">
             {
-              menu && menu.title && (
-                menu.title
-              )
+              menu?.title
             }
           </div>
         </div>
