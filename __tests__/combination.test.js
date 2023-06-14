@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import PageCombination from '../src/app/combination/page'
 import { createMockRouter } from '../src/lib/util/test/createMockRouter'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RouterContext } from 'next/dist/shared/lib/router-context'
 
 describe('PageCombination', () => {
