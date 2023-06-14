@@ -122,71 +122,78 @@ export default function CombinationItem({ combination, idx }: CombinationItemPro
       <div className="combination-content">
         <div className="combination-menu">
           <div className="combination-menu-image">
-            <Image
-              src={menu.image}
-              alt={menu.title}
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{ width: '100%', height: '100%' }}
-            />
+            { menu && (
+              <Image
+                src={menu.image}
+                alt={menu.title}
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: '100%', height: '100%' }}
+              />
+            )}
           </div>
           <div className="combination-menu-title">
-            { menu.title}
+            {
+              menu?.title
+            }
           </div>
         </div>
         <div className="combination-ingredients">
           <div className="combination-ingredients-primary">
             {
-              ingredients
-                .filter((ingredient: IngredientTypes) => ingredient.type !== 'sauce')
-                .sort((a: IngredientTypes, b: IngredientTypes) => {
-                  const order = ['bread', 'cheese']
-                  return order.indexOf(a.type) - order.indexOf(b.type)
-                })
-                .map((ingredient: IngredientTypes) => (
-                  <div key={ingredient.id} className='ingredient-item'>
-                    <div className="ingredient-image">
-                      <Image
-                        src={ingredient.image}
-                        alt={ingredient.title}
-                        width={0}
-                        height={0}
-                        sizes="100vw"
-                        style={{ width: '100%', height: '100%' }}
-                      />
+              ingredients && (
+                ingredients
+                  .filter((ingredient: IngredientTypes) => ingredient.type !== 'sauce')
+                  .sort((a: IngredientTypes, b: IngredientTypes) => {
+                    const order = ['bread', 'cheese']
+                    return order.indexOf(a.type) - order.indexOf(b.type)
+                  })
+                  .map((ingredient: IngredientTypes) => (
+                    <div key={ingredient.id} className='ingredient-item'>
+                      <div className="ingredient-image">
+                        <Image
+                          src={ingredient.image}
+                          alt={ingredient.title}
+                          width={0}
+                          height={0}
+                          sizes="100vw"
+                          style={{ width: '100%', height: '100%' }}
+                        />
+                      </div>
+                      <div className="ingredient-title">
+                        { ingredient.title }
+                      </div>
                     </div>
-                    <div className="ingredient-title">
-                      { ingredient.title }
-                    </div>
-                  </div>
-                ))
+                  ))
+              )
             }
           </div>
           <div className="combination-ingredients-sauce">
-          {
-              ingredients.filter((ingredient: IngredientTypes) => ingredient.type === 'sauce')
-                .map((ingredient: IngredientTypes) => (
-                  <div key={ingredient.id} className='ingredient-item'>
-                    <div className="ingredient-image">
-                      <Image
-                        src={ingredient.image}
-                        alt={ingredient.title}
-                        width={0}
-                        height={0}
-                        sizes="100vw"
-                        style={{ width: '100%', height: '100%' }}
-                      />
+            {
+              ingredients && (
+                ingredients.filter((ingredient: IngredientTypes) => ingredient.type === 'sauce')
+                  .map((ingredient: IngredientTypes) => (
+                    <div key={ingredient.id} className='ingredient-item'>
+                      <div className="ingredient-image">
+                        <Image
+                          src={ingredient.image}
+                          alt={ingredient.title}
+                          width={0}
+                          height={0}
+                          sizes="100vw"
+                          style={{ width: '100%', height: '100%' }}
+                        />
+                      </div>
+                      <div className="ingredient-title">
+                        { ingredient.title }
+                      </div>
                     </div>
-                    <div className="ingredient-title">
-                      { ingredient.title }
-                    </div>
-                  </div>
-                ))
+                  ))
+              )
             }
           </div>
-
-      </div>
+        </div>
       </div>
     </CombinationItemWrapper>
   )
