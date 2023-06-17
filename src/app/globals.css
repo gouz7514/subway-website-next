@@ -12,6 +12,8 @@
   --primary-green-hover: #00811f;
 
   --height-header: 80px;
+
+  --box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 * {
@@ -31,6 +33,7 @@ body[data-theme="dark"] {
   background-color: black;
   color: white;
   transition: all 0.3s ease-in-out;
+  --box-shadow: rgba(255, 255, 255, 0.4) 0px 1px 4px;
 }
 
 body[data-theme="light"] {

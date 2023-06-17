@@ -5,7 +5,7 @@ import Image from "next/image";
 const IngredientItemWrapper = styled.div`
   .item {
     border-radius: 12px;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    box-shadow: var(--box-shadow);
     position: relative;
     height: 100%;
     overflow: hidden;
@@ -14,6 +14,7 @@ const IngredientItemWrapper = styled.div`
       text-align: center;
       height: 70%;
       position: relative;
+      background-color: white;
     }
 
     .item-content {

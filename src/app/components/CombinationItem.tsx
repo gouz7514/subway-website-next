@@ -3,12 +3,12 @@ import { CombinationTypes, IngredientTypes } from '@/types/types'
 import Image from 'next/image'
 
 const CombinationItemWrapper = styled.div`
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: var(--box-shadow);
   border-radius: 12px;
   position: relative;
+  background-color: var(--primary-yellow);
 
   .combination-id {
-    // width: 100%;
     background-color: var(--primary-green);
     color: white;
     border-top-left-radius: 12px;
@@ -44,7 +44,8 @@ const CombinationItemWrapper = styled.div`
       width: 100%;
       height: 100%;
       border-radius: 12px;
-      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      box-shadow: var(--box-shadow);
+      background-color: white;
 
       @media screen and (max-width: 600px) {
         height: 200px
@@ -88,7 +89,7 @@ const CombinationItemWrapper = styled.div`
         width: 100%;
         height: 100%;
         border-radius: 12px;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        box-shadow: var(--box-shadow);
         overflow: hidden;
       }
 
