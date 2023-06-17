@@ -7,6 +7,8 @@ import GlobalHeader from '@/lib/globalHeader'
 import Header from './components/Header'
 import ReactQueryProvider from './ReactQueryProvider'
 
+import { Providers } from '@/store/provider'
+
 export default function RootLayout({
   children,
 }: {
@@ -27,12 +29,14 @@ export default function RootLayout({
       </head>
       <body>
         <ReactQueryProvider>
-          <GlobalHeader>
-            <Header />
-          </GlobalHeader>
-          <StyledComponentsRegistry>
-            { children }
-          </StyledComponentsRegistry>
+          <Providers>
+            <GlobalHeader>
+              <Header />
+            </GlobalHeader>
+            <StyledComponentsRegistry>
+                { children }
+            </StyledComponentsRegistry>
+          </Providers>
         </ReactQueryProvider>
       </body>
     </html>
