@@ -1,3 +1,5 @@
+import { ReactNode } from "react"
+
 export type MenuTypes = {
   id: number
   title: string
@@ -20,4 +22,10 @@ export type CombinationTypes = {
   menu: MenuTypes
   menuId: number
   ingredients: IngredientTypes[]
+}
+
+export type IconTypes = {
+  icon: ReactNode
+  width?: number
+  height?: number
 }

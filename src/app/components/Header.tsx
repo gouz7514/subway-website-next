@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { useDarkMode } from '@/lib/util/hooks/useDarkmode'
+import DarkMode from './DarkMode'
 
 const HeaderStyle = styled.header`
   background-color: var(--primary-green);
@@ -36,22 +36,29 @@ const HeaderStyle = styled.header`
     }
 
     .header-menu {
-      .header-toggle {
+      .header-mobile-menu {
         display: none;
-        cursor: pointer;
-        background-image: url('/icon/icon_menu.svg');
-        width: 30px;
-        height: 30px;
-        background-size: 30px 30px;
 
         @media screen and (max-width: 600px) {
-          display: block;
+          display: flex;
+          align-items: center;
+          gap: 12px;
         }
+      }
+
+      .header-toggle {
+        cursor: pointer;
+        background-image: url('/icon/icon_menu.svg');
+        width: 36px;
+        height: 36px;
+        background-size: 36px 36px;
+        background-repeat: no-repeat;
       }
 
       .header-links {
         display: flex;
         gap: 12px;
+        align-items: center;
 
         .header-link {
           cursor: pointer;
@@ -116,9 +123,9 @@ const HeaderStyle = styled.header`
 
       .header-close {
         background-image: url('/icon/icon_menu.svg');
-        width: 30px;
-        height: 30px;
-        background-size: 30px 30px;
+        width: 36px;
+        height: 36px;
+        background-size: 36px 36px;
         background-image: url('/icon/icon_close.svg');
         cursor: pointer;
         position: absolute;
@@ -173,8 +180,6 @@ export default function Header() {
   const pathname = usePathname()
   const currentPathNameRef = useRef(pathname)
 
-  const [theme, toggleTheme] = useDarkMode()
-
   const handleMenuClick = function() {
     setIsMenuVisible(!isMenuVisible)
   }
@@ -209,8 +214,12 @@ export default function Header() {
         <div className="header">
           <Link href={"/"} className="header-home" />
           <div className="header-menu">
-            <div className={ `header-toggle ${isMenuVisible ? 'close' : 'open' }` } onClick={handleMenuClick} />
+            <div className="header-mobile-menu">
+              <DarkMode />
+              <div className={ `header-toggle ${isMenuVisible ? 'close' : 'open' }` } onClick={handleMenuClick} />
+            </div>
             <div className="header-links">
+              <DarkMode />
               <Link href="/usage" className="header-link">
                 <div className="header-link-text">
                   사용 방법
@@ -226,9 +235,6 @@ export default function Header() {
                   조합 추천
                 </div>
               </Link>
-              <button onClick={toggleTheme}>
-                다크 모드
-              </button>
             </div>
           </div>
           { isMobile && 
