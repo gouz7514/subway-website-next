@@ -1,7 +1,11 @@
+'use client'
+
 import { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+
+import { useDarkMode } from '@/lib/util/hooks/useDarkmode'
 
 const HeaderStyle = styled.header`
   background-color: var(--primary-green);
@@ -169,6 +173,8 @@ export default function Header() {
   const pathname = usePathname()
   const currentPathNameRef = useRef(pathname)
 
+  const [theme, toggleTheme] = useDarkMode()
+
   const handleMenuClick = function() {
     setIsMenuVisible(!isMenuVisible)
   }
@@ -220,6 +226,9 @@ export default function Header() {
                   조합 추천
                 </div>
               </Link>
+              <button onClick={toggleTheme}>
+                다크 모드
+              </button>
             </div>
           </div>
           { isMobile && 
