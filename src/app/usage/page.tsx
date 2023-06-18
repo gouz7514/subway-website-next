@@ -21,8 +21,11 @@ import {
 SwiperCore.use([Pagination])
 
 const SwiperStyleRoot = styled.div`
-  --swiper-theme-color: var(--primary-yellow);
   margin: auto;
+
+  .swiper-pagination-bullet {
+    background-color: var(--primary-yellow);
+  }
 
   .swiper-slide {
     display: flex;

@@ -1,7 +1,11 @@
+'use client'
+
 import { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+
+import DarkMode from './DarkMode'
 
 const HeaderStyle = styled.header`
   background-color: var(--primary-green);
@@ -32,22 +36,35 @@ const HeaderStyle = styled.header`
     }
 
     .header-menu {
+      .header-mobile-menu {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
       .header-toggle {
-        display: none;
         cursor: pointer;
         background-image: url('/icon/icon_menu.svg');
-        width: 30px;
-        height: 30px;
-        background-size: 30px 30px;
+        width: 36px;
+        height: 36px;
+        background-size: 36px 36px;
+        background-repeat: no-repeat;
 
-        @media screen and (max-width: 600px) {
-          display: block;
+        @media screen and (min-width: 600px) {
+          display: none;
         }
+      }
+
+      .header-links-container {
+        display: flex;
+        gap: 12px;
+        align-items: center;
       }
 
       .header-links {
         display: flex;
         gap: 12px;
+        align-items: center;
 
         .header-link {
           cursor: pointer;
@@ -112,9 +129,9 @@ const HeaderStyle = styled.header`
 
       .header-close {
         background-image: url('/icon/icon_menu.svg');
-        width: 30px;
-        height: 30px;
-        background-size: 30px 30px;
+        width: 36px;
+        height: 36px;
+        background-size: 36px 36px;
         background-image: url('/icon/icon_close.svg');
         cursor: pointer;
         position: absolute;
@@ -168,6 +185,7 @@ export default function Header() {
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   const pathname = usePathname()
   const currentPathNameRef = useRef(pathname)
+  const [isDarkModeVisible, setIsDarkModeVisible] = useState(false)
 
   const handleMenuClick = function() {
     setIsMenuVisible(!isMenuVisible)
@@ -178,6 +196,8 @@ export default function Header() {
   }
 
   useEffect(() => {
+    setIsDarkModeVisible(true)
+
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 600)
     }
@@ -203,23 +223,28 @@ export default function Header() {
         <div className="header">
           <Link href={"/"} className="header-home" />
           <div className="header-menu">
-            <div className={ `header-toggle ${isMenuVisible ? 'close' : 'open' }` } onClick={handleMenuClick} />
-            <div className="header-links">
-              <Link href="/usage" className="header-link">
-                <div className="header-link-text">
-                  사용 방법
+            <div className="header-links-container">
+              {
+                isDarkModeVisible && <DarkMode />
+              }
+                <div className={ `header-toggle ${isMenuVisible ? 'close' : 'open' }` } onClick={handleMenuClick} />
+                <div className="header-links">
+                  <Link href="/usage" className="header-link">
+                    <div className="header-link-text">
+                      사용 방법
+                    </div>
+                  </Link>
+                  <Link href="/ingredients" className="header-link">
+                    <div className="header-link-text">
+                      재료 소개
+                    </div>
+                  </Link>
+                  <Link href="/combination" className="header-link">
+                    <div className="header-link-text">
+                      조합 추천
+                    </div>
+                  </Link>
                 </div>
-              </Link>
-              <Link href="/ingredients" className="header-link">
-                <div className="header-link-text">
-                  재료 소개
-                </div>
-              </Link>
-              <Link href="/combination" className="header-link">
-                <div className="header-link-text">
-                  조합 추천
-                </div>
-              </Link>
             </div>
           </div>
           { isMobile && 
