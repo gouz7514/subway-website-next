@@ -37,13 +37,9 @@ const HeaderStyle = styled.header`
 
     .header-menu {
       .header-mobile-menu {
-        display: none;
-
-        @media screen and (max-width: 600px) {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
+        display: flex;
+        align-items: center;
+        gap: 12px;
       }
 
       .header-toggle {
@@ -53,6 +49,12 @@ const HeaderStyle = styled.header`
         height: 36px;
         background-size: 36px 36px;
         background-repeat: no-repeat;
+      }
+
+      .header-links-container {
+        display: flex;
+        gap: 12px;
+        align-items: center;
       }
 
       .header-links {
@@ -98,10 +100,6 @@ const HeaderStyle = styled.header`
               background-color: #E2B537;
             }
           }
-        }
-
-        @media screen and (max-width: 600px) {
-          display: none;
         }
       }
     }
@@ -214,27 +212,33 @@ export default function Header() {
         <div className="header">
           <Link href={"/"} className="header-home" />
           <div className="header-menu">
-            <div className="header-mobile-menu">
+            <div className="header-links-container">
               <DarkMode />
-              <div className={ `header-toggle ${isMenuVisible ? 'close' : 'open' }` } onClick={handleMenuClick} />
-            </div>
-            <div className="header-links">
-              <DarkMode />
-              <Link href="/usage" className="header-link">
-                <div className="header-link-text">
-                  사용 방법
-                </div>
-              </Link>
-              <Link href="/ingredients" className="header-link">
-                <div className="header-link-text">
-                  재료 소개
-                </div>
-              </Link>
-              <Link href="/combination" className="header-link">
-                <div className="header-link-text">
-                  조합 추천
-                </div>
-              </Link>
+              {
+                isMobile ? 
+                (
+                  <div className={ `header-toggle ${isMenuVisible ? 'close' : 'open' }` } onClick={handleMenuClick} />
+                ) :
+                (
+                  <div className="header-links">
+                    <Link href="/usage" className="header-link">
+                      <div className="header-link-text">
+                        사용 방법
+                      </div>
+                    </Link>
+                    <Link href="/ingredients" className="header-link">
+                      <div className="header-link-text">
+                        재료 소개
+                      </div>
+                    </Link>
+                    <Link href="/combination" className="header-link">
+                      <div className="header-link-text">
+                        조합 추천
+                      </div>
+                    </Link>
+                  </div>
+                )
+              }
             </div>
           </div>
           { isMobile && 
