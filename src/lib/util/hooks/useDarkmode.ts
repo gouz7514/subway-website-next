@@ -13,18 +13,14 @@ export const useDarkMode = (): [string, () => void] => {
   useEffect(() => {
     const localTheme = window.localStorage.getItem('theme') as Theme | null
 
-    if (localTheme) {
-      dispatch(setTheme(localTheme))
-      document.body.dataset.theme = localTheme
-    } else {
-      dispatch(setTheme('light'))
-      document.body.dataset.theme = 'light'
-    }
+    dispatch(setTheme(localTheme || 'light'))
+    window.localStorage.setItem('theme', localTheme || 'light')
   }, [dispatch])
 
   const toggleTheme = () => {
     const newTheme = themeState.value === 'light' ? 'dark' : 'light'
     window.localStorage.setItem('theme', newTheme)
+    document.body.style.setProperty('transition', 'background-color 0.3s ease')
     document.body.dataset.theme = newTheme
     dispatch(setTheme(newTheme))
   };
