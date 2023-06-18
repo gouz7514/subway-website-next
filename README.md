@@ -27,9 +27,9 @@ NextJS, Typescript, prisma, Vercel postgres를 활용했으며 vercel을 통해 
 공식 홈페이지(업데이트가 되지 않음)의 재료를 그대로 따 와서 실제 재료와 맞지 않을 수 있습니다.
 
 #### 조합 추천 & 추가
-**조합 추천**
+##### 조합 추천 ([링크](https://subway-website-next.vercel.app/combination))
 써브웨이의 다양한 조합을 확인할 수 있습니다.
 
-**조합 추가**
+##### 조합 추가 ([링크](https://subway-website-next.vercel.app/combination/form))
 원하는 조합을 누구나 쉽게 추가할 수 있습니다.<br />
 추가된 조합은 vercel postgres에 저장됩니다.
