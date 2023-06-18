@@ -49,6 +49,10 @@ const HeaderStyle = styled.header`
         height: 36px;
         background-size: 36px 36px;
         background-repeat: no-repeat;
+
+        @media screen and (min-width: 600px) {
+          display: none;
+        }
       }
 
       .header-links-container {
@@ -100,6 +104,10 @@ const HeaderStyle = styled.header`
               background-color: #E2B537;
             }
           }
+        }
+
+        @media screen and (max-width: 600px) {
+          display: none;
         }
       }
     }
@@ -177,6 +185,7 @@ export default function Header() {
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   const pathname = usePathname()
   const currentPathNameRef = useRef(pathname)
+  const [isDarkModeVisible, setIsDarkModeVisible] = useState(false)
 
   const handleMenuClick = function() {
     setIsMenuVisible(!isMenuVisible)
@@ -187,6 +196,8 @@ export default function Header() {
   }
 
   useEffect(() => {
+    setIsDarkModeVisible(true)
+
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 600)
     }
@@ -213,32 +224,27 @@ export default function Header() {
           <Link href={"/"} className="header-home" />
           <div className="header-menu">
             <div className="header-links-container">
-              <DarkMode />
               {
-                isMobile ? 
-                (
-                  <div className={ `header-toggle ${isMenuVisible ? 'close' : 'open' }` } onClick={handleMenuClick} />
-                ) :
-                (
-                  <div className="header-links">
-                    <Link href="/usage" className="header-link">
-                      <div className="header-link-text">
-                        사용 방법
-                      </div>
-                    </Link>
-                    <Link href="/ingredients" className="header-link">
-                      <div className="header-link-text">
-                        재료 소개
-                      </div>
-                    </Link>
-                    <Link href="/combination" className="header-link">
-                      <div className="header-link-text">
-                        조합 추천
-                      </div>
-                    </Link>
-                  </div>
-                )
+                isDarkModeVisible && <DarkMode />
               }
+                <div className={ `header-toggle ${isMenuVisible ? 'close' : 'open' }` } onClick={handleMenuClick} />
+                <div className="header-links">
+                  <Link href="/usage" className="header-link">
+                    <div className="header-link-text">
+                      사용 방법
+                    </div>
+                  </Link>
+                  <Link href="/ingredients" className="header-link">
+                    <div className="header-link-text">
+                      재료 소개
+                    </div>
+                  </Link>
+                  <Link href="/combination" className="header-link">
+                    <div className="header-link-text">
+                      조합 추천
+                    </div>
+                  </Link>
+                </div>
             </div>
           </div>
           { isMobile && 
