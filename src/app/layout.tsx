@@ -1,5 +1,3 @@
-'use client'
-
 import './globals.css'
 import StyledComponentsRegistry from '@/lib/registry'
 import GlobalHeader from '@/lib/globalHeader'
@@ -7,13 +5,33 @@ import GlobalHeader from '@/lib/globalHeader'
 import Header from './components/Header'
 import ReactQueryProvider from './ReactQueryProvider'
 
+import { Providers } from '@/store/provider'
+
+function SetDocumentColor() {
+  const theme = localStorage.getItem('theme') || 'light'
+  
+  if (theme === 'light') {
+    document.body.dataset.theme = 'light'
+  } else {
+    document.body.dataset.theme = 'dark'
+  }
+}
+
+const ScriptTag = () => {
+  const stringifyFn = String(SetDocumentColor)
+
+  const fnToRun = `(${stringifyFn})()`
+
+  return <script dangerouslySetInnerHTML={{ __html: fnToRun }} />;
+};
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <title>SubHow - 쉽게 즐기는 써브웨이</title>
         <meta charSet="utf-8" />
@@ -26,13 +44,16 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
+        <ScriptTag />
         <ReactQueryProvider>
-          <GlobalHeader>
-            <Header />
-          </GlobalHeader>
-          <StyledComponentsRegistry>
-            { children }
-          </StyledComponentsRegistry>
+          <Providers>
+            <GlobalHeader>
+              <Header />
+            </GlobalHeader>
+            <StyledComponentsRegistry>
+                { children }
+            </StyledComponentsRegistry>
+          </Providers>
         </ReactQueryProvider>
       </body>
     </html>

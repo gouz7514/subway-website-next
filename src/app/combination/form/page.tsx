@@ -55,7 +55,7 @@ const SwiperStyleRoot = styled.div`
   }
 
   .ingredient-slide {
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    box-shadow: var(--box-shadow);
     border-radius: 12px;
     overflow: hidden;
 
@@ -84,6 +84,7 @@ const SwiperStyleRoot = styled.div`
     align-items: center;
     position: relative;
     height: 100%;
+    background-color: white;
 
     .ingredient-title {
       font-size: 16px;
