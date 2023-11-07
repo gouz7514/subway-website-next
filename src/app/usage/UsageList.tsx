@@ -294,7 +294,7 @@ export const UsageSet = () => {
 
   useEffect(() => {
     if (ingredientData) {
-      const data = ingredientData.filter((ingredient: IngredientTypes) => ingredient.type === 'sauce')
+      const data = ingredientData.filter((ingredient: IngredientTypes) => ingredient.type === 'set')
       setSets(data)
     }
   }, [ingredientData])
